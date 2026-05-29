@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сайт с фиксированной навигацией</title>
+    <link rel="stylesheet" href="css/all.css"/>
+
+    <script type="text/javascript" src="https://jsdelivr.net"></script>
+
+    <link id="theme-style" rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="playerStatus" class="music-player-status" style="position: fixed; top: 80px; left: 50%; transform: translateX(-50%); padding: 5px 15px; font-size: 14px; z-index: 1100; display: none; background: #fff; color: #000; border: 2px solid #000;">
+        Сейчас играет: <span id="trackName">Ничего</span>
+    </div>
+
+    <nav class="topbar">
+        <a href="#start">В начало</a>
+        <a href="#middle">В середину</a>
+        <a href="#end">В конец</a>
+    </nav>
+
+    <!-- ИСПРАВЛЕНО: Убрано свойство margin auto и display block. Теперь картинка прижата к левому краю -->
+    <img decoding="async" src="quenesi.png" class="wp-image-981" width="115" sizes="(max-width: 231px) 100vw, 231px"
+         onclick="changeStyle('style2.css')" style="cursor: pointer; margin: 20px 0 20px 30px;">
+
+    <section id="start" class="section">
+        <div class="texture-rectangle">
+            <!-- Левая часть: Падж (при клике играет музыка) -->
+            <div class="image-wrapper" onclick="playRandomMusic()" style="cursor: pointer;">
+                <img src="картинки/йцу.png" class="img-base" alt="Картинка 1"/>
+                <img src="картинки/pudge-dance.gif" class="img-hover" alt="Картинка 2"/>
+            </div>
+
+            <!-- Правая часть: Блок текста -->
+            <div class="text-block">
+                <h1 class="text-large">БОЛЬШОЙ ТЕКСТ</h1>
+                <p class="text-small">Маленький текст, который дополняет описание.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="middle" class="section">
+        <div class="bookcase">
+            <div class="shelf">
+                <button class="shelf-btn">тут нечего</button>
+                <button class="shelf-btn">тут нечего</button>
+                <button class="shelf-btn">тут нечего</button>
+                <button class="shelf-btn">тут нечего</button>
+                <button class="shelf-btn">тут нечего</button>
+            </div>
+
+            <div class="shelf">
+                <button class="shelf-btn">тут нечего</button>
+                <button class="shelf-btn">тут нечего</button>
+                <button class="shelf-btn">тут нечего</button>
+                <button class="shelf-btn">тут нечего</button>
+                <button class="shelf-btn">тут нечего</button>
+            </div>
+
+            <div class="shelf">
+                <button class="shelf-btn">тут нечего</button>
+                <button class="shelf-btn">тут нечего</button>
+                <button class="shelf-btn">тут нечего</button>
+                <button class="shelf-btn">тут нечего</button>
+                <button class="shelf-btn">тут нечего</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="end" class="section">
+        <img decoding="async" src="quenesi.png" class="wp-image-981" width="260" sizes="(max-width: 400px) 1000vw, 401px"
+             onclick="changeStyle('style3.css')" style="cursor: pointer; display: block; margin-bottom: 20px;">
+
+        <ul class="list-container">
+            <li class="list-item">
+                <a href="https://github.com/mishamario92">
+                    <i class="fab fa-github"></i> гитхаб
+                </a>
+            </li>
+            <li class="list-item">
+                <a href="https://t.me" style="color: #17afb5;">
+                    <i class="fab fa-telegram-plane"></i> телега
+                </a>
+            </li>
+        </ul>
+
+        <button type="button" style="margin-top: 20px" class="custom-btn btn-1">"озувучить"</button>
+    </section>
+
+
+
+<script>
+    // --- 1. ФУНКЦИЯ ДИНАМИЧЕСКОЙ СМЕНЫ СТИЛЕЙ СТРАНИЦЫ ---
+    function changeStyle(sheetName) {
+        const themeStyle = document.getElementById('theme-style');
+        if (themeStyle) {
+            themeStyle.setAttribute('href', sheetName);
+        }
+    }
+
+    // --- 2. МУЗЫКАЛЬНЫЙ ПЛЕЕР (ПАПКА "музяка") ---
+    let currentAudio = null;
+
+    const playlist = [
+        { name: "Трек 1", file: "музяка/1.mp3" },
+        { name: "Трек 2", file: "музяка/2.mp3" },
+        { name: "Трек 3", file: "музяка/3.mp3" }
+    ];
+
+    function playRandomMusic() {
+        if (currentAudio) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+        }
+
+        const randomTrack = playlist[Math.floor(Math.random() * playlist.length)];
+
+        currentAudio = new Audio(randomTrack.file);
+        currentAudio.play().catch(e => console.log("Файл не найден. Проверьте папку 'музяка'"));
+
+        const statusNode = document.getElementById('playerStatus');
+        const nameNode = document.getElementById('trackName');
+
+        if (nameNode) nameNode.innerText = randomTrack.name;
+        if (statusNode) statusNode.style.display = 'block';
+    }
+
+    // --- 3. РАБОТА С ФОНОВЫМИ ИКОНКАМИ И ИХ ПЕРЕТАСКИВАНИЕМ ---
+    const localBase = 'icons/';
+    const totalIcons = 61;
+    const windowsIcons = [];
+    for (let i = 1; i <= totalIcons; i++) {
+        windowsIcons.push(`${i}.ico`);
+    }
+
+    const getRandom = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+    // Функция активации перетаскивания
+    function makeIconDraggable(img) {
+        let isDragging = false;
+        let isMoved = false;
+        let startX, startY;
+        let shiftX, shiftY;
+
+        img.addEventListener('mousedown', function(e) {
+            if (e.button !== 0) return;
+
+            startX = e.clientX;
+            startY = e.clientY;
+            isMoved = false;
+            isDragging = true;
+
+            const rect = img.getBoundingClientRect();
+            shiftX = e.clientX - rect.left;
+            shiftY = e.clientY - rect.top;
+
+            // У иконки остается минимальный индекс слоя
+            img.style.zIndex = '1';
+
+            e.preventDefault();
+        });
+
+        document.addEventListener('mousemove', function(e) {
+            if (!isDragging) return;
+
+            if (Math.abs(e.clientX - startX) > 5 || Math.abs(e.clientY - startY) > 5) {
+                isMoved = true;
+            }
+
+            let newX = e.clientX - shiftX;
+            let newY = e.clientY - shiftY + window.scrollY;
+
+            img.style.left = `${newX}px`;
+            img.style.top = `${newY}px`;
+
+            img.style.transform = `rotate(${img.dataset.angle}deg)`;
+        });
+
+        document.addEventListener('mouseup', function(e) {
+            if (!isDragging) return;
+            isDragging = false;
+
+            img.style.zIndex = '1';
+
+            if (!isMoved) {
+                playRandomMusic();
+            }
+        });
+
+        img.ondragstart = function() { return false; };
+    }
+
+    const generateRetroIcons = () => {
+        const iconCount = getRandom(50, 80);
+        const spawnedIcons = [];
+        const minDistance = 70;
+        const screenWidth = window.innerWidth;
+
+        const screenHeight = Math.max(
+            document.body.scrollHeight,
+            document.documentElement.scrollHeight,
+            document.body.offsetHeight,
+            document.documentElement.offsetHeight,
+            document.body.clientHeight,
+            document.documentElement.clientHeight
+        );
+
+        for (let i = 0; i < iconCount; i++) {
+            const img = document.createElement('img');
+            const randomIconFile = windowsIcons[getRandom(0, windowsIcons.length - 1)];
+
+            img.src = `${localBase}${randomIconFile}`;
+            img.classList.add('retro-icon');
+            img.alt = 'Windows 95 Icon';
+
+            img.style.position = 'absolute';
+            img.style.pointerEvents = 'auto';
+            img.style.cursor = 'move';
+            img.style.userSelect = 'none';
+            img.style.webkitUserSelect = 'none';
+
+            // Задаем иконкам минимально возможный индекс слоя
+            img.style.zIndex = '1';
+
+            let posX, posY;
+            let attempts = 0;
+            let tooClose = false;
+
+            do {
+                tooClose = false;
+                posX = getRandom(30, screenWidth - 80);
+                posY = getRandom(30, screenHeight - 80);
+                attempts++;
+
+                for (let icon of spawnedIcons) {
+                    const dist = Math.hypot(posX - icon.x, posY - icon.y);
+                    if (dist < minDistance) {
+                        tooClose = true;
+                        break;
+                    }
+                }
+            } while (tooClose && attempts < 60);
+
+            spawnedIcons.push({ x: posX, y: posY });
+
+            const randomAngle = getRandom(-45, 45);
+            img.dataset.angle = randomAngle;
+
+            img.style.left = `${posX}px`;
+            img.style.top = `${posY}px`;
+            img.style.transform = `rotate(${randomAngle}deg)`;
+
+            document.body.appendChild(img);
+
+            makeIconDraggable(img);
+        }
+
+        // ========================================================
+        // АВТО-ФИКС СЛОЕВ: Находим все блоки интерфейса и поднимаем их над иконками
+        // Находим все теги div, кроме самих картинок иконок
+        const allDivs = document.querySelectorAll('div');
+        allDivs.forEach(div => {
+            // Если у блока нет явного позиционирования, включаем relative, чтобы заработал z-index
+            const currentPosition = window.getComputedStyle(div).position;
+            if (currentPosition === 'static') {
+                div.style.position = 'relative';
+            }
+            // Выставляем блокам индекс 10 (это выше, чем 1 у иконок)
+            div.style.zIndex = '10';
+        });
+        // ========================================================
+    };
+
+    window.addEventListener('load', generateRetroIcons);
+</script>
+<!-- ФОРМА КНИГИ ЖАЛОБ (Отредактируйте стили под ваш Windows 95) -->
+<div class="feedback-box" style="position: relative; z-index: 20; background: #c0c0c0; border: 2px solid #fff; padding: 15px; width: 300px; box-shadow: 2px 2px 5px #000;">
+    <div style="background: #000080; color: #fff; padding: 3px; font-weight: bold; margin-bottom: 10px;">Книга жалоб и предложений</div>
+
+    <!-- Важно: id должен быть "contact-form" -->
+    <form id="contact-form">
+        <label style="display:block; margin-bottom: 5px;">Ваше имя/ник:</label>
+        <!-- Важно: name="name" для совпадения с {{name}} в шаблоне -->
+        <input type="text" name="name" required style="width: 100%; margin-bottom: 10px;">
+
+        <label style="display:block; margin-bottom: 5px;">Суть жалобы или идеи:</label>
+        <!-- Важно: name="message" для совпадения с {{message}} в шаблоне -->
+        <textarea name="message" required style="width: 100%; height: 80px; margin-bottom: 10px; resize: none;"></textarea>
+
+        <!-- Ваша красивая кнопка "Озвучить" -->
+        <button type="button" style="margin-top: 20px" class="custom-btn btn-1">Озвучить</button>
+    </form>
+
+    <!-- Небольшой блок для вывода статуса отправки -->
+    <div id="form-status" style="margin-top: 10px; font-weight: bold; display: none;"></div>
+</div>
+
+<!-- ПОДКЛЮЧЕНИЕ БИБЛИОТЕКИ И СКРИПТ ОТПРАВКИ -->
+<script type="text/javascript" src="https://jsdelivr.net"></script>
+<script type="text/javascript">
+    (function(){
+        emailjs.init("z_xwGDmKpyyFor9JT");
+    })();
+
+    window.addEventListener('load', function() {
+        // Находим кнопку "Озвучить"
+        const voiceButton = document.querySelector('.custom-btn.btn-1');
+        const formStatus = document.getElementById('form-status');
+
+        if (voiceButton) {
+            voiceButton.addEventListener('click', function() {
+                const myForm = document.getElementById('contact-form');
+
+                // Проверяем, заполнил ли пользователь поля перед отправкой
+                if (!myForm.checkValidity()) {
+                    myForm.reportValidity();
+                    return;
+                }
+
+                if (formStatus) {
+                    formStatus.style.display = 'block';
+                    formStatus.style.color = 'black';
+                    formStatus.innerText = 'Отправка...';
+                }
+
+                // Вставляем ваш зафиксированный Service ID и скопированный Template ID
+                const serviceID = 'service_botyk3h';
+                const templateID = 'template_w1k7ku4'; // <--- Вставьте сюда ваш ID шаблона!
+
+                emailjs.sendForm(serviceID, templateID, myForm)
+                    .then(function() {
+                        console.log('Успешно отправлено!');
+                        if (formStatus) {
+                            formStatus.style.color = 'green';
+                            formStatus.innerText = 'Успешно доставлено в Proton Mail!';
+                        }
+                        if (myForm) myForm.reset(); // Очищаем форму
+                    }, function(error) {
+                        console.error('Ошибка EmailJS:', error);
+                        if (formStatus) {
+                            formStatus.style.color = 'red';
+                            formStatus.innerText = 'Ошибка при отправке.';
+                        }
+                    });
+            });
+        }
+    });
+</script>
+
+
+
+
+
+</body>
+</html>
