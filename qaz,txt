@@ -24,13 +24,11 @@
 
     <section id="start" class="section">
         <div class="texture-rectangle">
-            <!-- Левая часть: Падж (при клике играет музыка) -->
             <div class="image-wrapper" onclick="playRandomMusic()" style="cursor: pointer;">
                 <img src="картинки/йцу.png" class="img-base" alt="Картинка 1"/>
                 <img src="картинки/pudge-dance.gif" class="img-hover" alt="Картинка 2"/>
             </div>
 
-            <!-- Правая часть: Блок текста -->
             <div class="text-block">
                 <h1 class="text-large">БОЛЬШОЙ ТЕКСТ</h1>
                 <p class="text-small">Маленький текст, который дополняет описание.</p>
@@ -88,7 +86,6 @@
 
 
 <script>
-    // --- 1. ФУНКЦИЯ ДИНАМИЧЕСКОЙ СМЕНЫ СТИЛЕЙ СТРАНИЦЫ ---
     function changeStyle(sheetName) {
         const themeStyle = document.getElementById('theme-style');
         if (themeStyle) {
@@ -96,13 +93,12 @@
         }
     }
 
-    // --- 2. МУЗЫКАЛЬНЫЙ ПЛЕЕР (ПАПКА "музяка") ---
     let currentAudio = null;
 
     const playlist = [
-        { name: "Трек 1", file: "музяка/1.mp3" },
-        { name: "Трек 2", file: "музяка/2.mp3" },
-        { name: "Трек 3", file: "музяка/3.mp3" }
+        { name: "самая зугудачная песня инета", file: "музяка/1.mp3" },
+        { name: "смеш", file: "музяка/2.mp3" },
+        { name: "виюшка", file: "музяка/3.mp3" }
     ];
 
     function playRandomMusic() {
@@ -123,7 +119,6 @@
         if (statusNode) statusNode.style.display = 'block';
     }
 
-    // --- 3. РАБОТА С ФОНОВЫМИ ИКОНКАМИ И ИХ ПЕРЕТАСКИВАНИЕМ ---
     const localBase = 'icons/';
     const totalIcons = 61;
     const windowsIcons = [];
@@ -133,7 +128,6 @@
 
     const getRandom = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-    // Функция активации перетаскивания
     function makeIconDraggable(img) {
         let isDragging = false;
         let isMoved = false;
@@ -152,7 +146,6 @@
             shiftX = e.clientX - rect.left;
             shiftY = e.clientY - rect.top;
 
-            // У иконки остается минимальный индекс слоя
             img.style.zIndex = '1';
 
             e.preventDefault();
@@ -217,7 +210,6 @@
             img.style.userSelect = 'none';
             img.style.webkitUserSelect = 'none';
 
-            // Задаем иконкам минимально возможный индекс слоя
             img.style.zIndex = '1';
 
             let posX, posY;
@@ -253,76 +245,57 @@
             makeIconDraggable(img);
         }
 
-        // ========================================================
-        // АВТО-ФИКС СЛОЕВ: Находим все блоки интерфейса и поднимаем их над иконками
-        // Находим все теги div, кроме самих картинок иконок
         const allDivs = document.querySelectorAll('div');
         allDivs.forEach(div => {
-            // Если у блока нет явного позиционирования, включаем relative, чтобы заработал z-index
             const currentPosition = window.getComputedStyle(div).position;
             if (currentPosition === 'static') {
                 div.style.position = 'relative';
             }
-            // Выставляем блокам индекс 10 (это выше, чем 1 у иконок)
             div.style.zIndex = '10';
         });
-        // ========================================================
     };
 
     window.addEventListener('load', generateRetroIcons);
 </script>
-<!-- ФОРМА КНИГИ ЖАЛОБ (Отредактируйте стили под ваш Windows 95) -->
 <div class="feedback-box" style="position: relative; z-index: 20; background: #c0c0c0; border: 2px solid #fff; padding: 15px; width: 300px; box-shadow: 2px 2px 5px #000;">
     <div style="background: #000080; color: #fff; padding: 3px; font-weight: bold; margin-bottom: 10px;">Книга жалоб и предложений</div>
 
-    <!-- Важно: id должен быть "contact-form" -->
     <form id="contact-form">
         <label style="display:block; margin-bottom: 5px;">Ваше имя/ник:</label>
-        <!-- Важно: name="name" для совпадения с {{name}} в шаблоне -->
         <input type="text" name="name" required style="width: 100%; margin-bottom: 10px;">
 
         <label style="display:block; margin-bottom: 5px;">Суть жалобы или идеи:</label>
-        <!-- Важно: name="message" для совпадения с {{message}} в шаблоне -->
         <textarea name="message" required style="width: 100%; height: 80px; margin-bottom: 10px; resize: none;"></textarea>
 
-        <!-- Ваша красивая кнопка "Озвучить" -->
         <button type="button" style="margin-top: 20px" class="custom-btn btn-1">Озвучить</button>
     </form>
-
-    <!-- Небольшой блок для вывода статуса отправки -->
     <div id="form-status" style="margin-top: 10px; font-weight: bold; display: none;"></div>
 </div>
 
-
-<script >
+<script src="https://jsdelivr.net"></script>
+<script>
     (function(){
         emailjs.init("z_xwGDmKpyyFor9JT");
     })();
 
     window.addEventListener('load', function() {
-        // Находим кнопку "Озвучить"
         const voiceButton = document.querySelector('.custom-btn.btn-1');
         const formStatus = document.getElementById('form-status');
 
         if (voiceButton) {
             voiceButton.addEventListener('click', function() {
                 const myForm = document.getElementById('contact-form');
-
-                // Проверяем, заполнил ли пользователь поля перед отправкой
                 if (!myForm.checkValidity()) {
                     myForm.reportValidity();
                     return;
                 }
-
                 if (formStatus) {
                     formStatus.style.display = 'block';
                     formStatus.style.color = 'black';
                     formStatus.innerText = 'Отправка...';
                 }
-
-                // Вставляем ваш зафиксированный Service ID и скопированный Template ID
                 const serviceID = 'service_botyk3h';
-                const templateID = 'template_w1k7ku4'; // <--- Вставьте сюда ваш ID шаблона!
+                const templateID = 'template_w1k7ku4';
 
                 emailjs.sendForm(serviceID, templateID, myForm)
                     .then(function() {
@@ -331,7 +304,7 @@
                             formStatus.style.color = 'green';
                             formStatus.innerText = 'Успешно доставлено в Proton Mail!';
                         }
-                        if (myForm) myForm.reset(); // Очищаем форму
+                        if (myForm) myForm.reset();
                     }, function(error) {
                         console.error('Ошибка EmailJS:', error);
                         if (formStatus) {
@@ -342,9 +315,9 @@
             });
         }
     });
-
-
 </script>
+
+
 
 
 
