@@ -6,8 +6,6 @@
     <title>Сайт с фиксированной навигацией</title>
     <link rel="stylesheet" href="css/all.css"/>
 
-    <script type="text/javascript" src="https://jsdelivr.net"></script>
-
     <link id="theme-style" rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,9 +19,8 @@
         <a href="#end">В конец</a>
     </nav>
 
-    <!-- ИСПРАВЛЕНО: Убрано свойство margin auto и display block. Теперь картинка прижата к левому краю -->
-    <img decoding="async" src="quenesi.png" class="wp-image-981" width="115" sizes="(max-width: 231px) 100vw, 231px"
-         onclick="changeStyle('style2.css')" style="cursor: pointer; margin: 20px 0 20px 30px;">
+    <img decoding="async" src="quenesi.png" id="myImage" class="wp-image-981" width="115" sizes="(max-width: 231px) 100vw, 231px"
+         onclick="changeStyle('style2.css'), document.getElementById('myImage').src='2.png', document.getElementById('m').src='2.png'" style="cursor: pointer; margin: 20px 0 20px 30px;">
 
     <section id="start" class="section">
         <div class="texture-rectangle">
@@ -70,8 +67,8 @@
     </section>
 
     <section id="end" class="section">
-        <img decoding="async" src="quenesi.png" class="wp-image-981" width="260" sizes="(max-width: 400px) 1000vw, 401px"
-             onclick="changeStyle('style3.css')" style="cursor: pointer; display: block; margin-bottom: 20px;">
+        <img decoding="async" src="quenesi.png" id="m" class="wp-image-981" width="260" sizes="(max-width: 400px) 1000vw, 401px"
+             onclick="changeStyle('style3.css'), document.getElementById('m').src='2.png', document.getElementById('myImage').src='2.png' " style="cursor: pointer; display: block; margin-bottom: 20px;">
 
         <ul class="list-container">
             <li class="list-item">
@@ -296,9 +293,8 @@
     <div id="form-status" style="margin-top: 10px; font-weight: bold; display: none;"></div>
 </div>
 
-<!-- ПОДКЛЮЧЕНИЕ БИБЛИОТЕКИ И СКРИПТ ОТПРАВКИ -->
-<script type="text/javascript" src="https://jsdelivr.net"></script>
-<script type="text/javascript">
+
+<script >
     (function(){
         emailjs.init("z_xwGDmKpyyFor9JT");
     })();
@@ -346,6 +342,8 @@
             });
         }
     });
+
+
 </script>
 
 
