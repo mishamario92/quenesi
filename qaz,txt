@@ -50,7 +50,7 @@
                 <button onclick="window.location.href='заброшка.html';" class="shelf-btn">тут нечего</button>
             </div>
 
-            <div class="shelf">
+            <div class="shelf2">
                 <button onclick="window.location.href='заброшка.html';" class="shelf-btn">тут нечего</button>
                 <button onclick="window.location.href='заброшка.html';" class="shelf-btn">тут нечего</button>
                 <button onclick="window.location.href='заброшка.html';" class="shelf-btn">тут нечего</button>
@@ -58,7 +58,7 @@
                 <button onclick="window.location.href='заброжка.html';" class="shelf-btn">тут нечего</button>
             </div>
 
-            <div class="shelf">
+            <div class="shelf3">
                 <button onclick="window.location.href='заброшка.html';" class="shelf-btn">тут нечего</button>
                 <button onclick="window.location.href='заброшка.html';" class="shelf-btn">тут нечего</button>
                 <button onclick="window.location.href='заброшка.html';" class="shelf-btn">тут нечего</button>
