@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Сайт с фиксированной навигацией</title>
+    <title>quenesi</title>
     <link rel="stylesheet" href="css/all.css"/>
 
     <link id="theme-style" rel="stylesheet" href="style.css">
+    <link rel="icon" href="иконка.png" sizes="any">
 </head>
 <body>
     <div id="playerStatus" class="music-player-status" style="position: fixed; top: 80px; left: 50%; transform: translateX(-50%); padding: 5px 15px; font-size: 14px; z-index: 1100; display: none; background: #fff; color: #000; border: 2px solid #000;">
@@ -30,36 +31,39 @@
             </div>
 
             <div class="text-block">
-                <h1 class="text-large">БОЛЬШОЙ ТЕКСТ</h1>
-                <p class="text-small">Маленький текст, который дополняет описание.</p>
+                <h1 class="text-large">я _mMm_ это моё портфолио</h1>
+                <p class="text-small"> я знаю блондер фигму годот веб итак понятно и тд...</p>
             </div>
         </div>
     </section>
-
+    <p style="    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+    line-height: 1.6;">тут только то что смог откопать</p>
     <section id="middle" class="section">
         <div class="bookcase">
             <div class="shelf">
-                <button class="shelf-btn">тут нечего</button>
-                <button class="shelf-btn">тут нечего</button>
-                <button class="shelf-btn">тут нечего</button>
-                <button class="shelf-btn">тут нечего</button>
-                <button class="shelf-btn">тут нечего</button>
+                <button onclick="window.location.href='заброшка.html';" class="shelf-btn">тут нечего</button>
+                <button onclick="window.location.href='заброшка.html';" class="shelf-btn">тут нечего</button>
+                <button onclick="window.location.href='заброшка.html';" class="shelf-btn">тут нечего</button>
+                <button onclick="window.location.href='заброшка.html';" class="shelf-btn">тут нечего</button>
+                <button onclick="window.location.href='заброшка.html';" class="shelf-btn">тут нечего</button>
             </div>
 
             <div class="shelf">
-                <button class="shelf-btn">тут нечего</button>
-                <button class="shelf-btn">тут нечего</button>
-                <button class="shelf-btn">тут нечего</button>
-                <button class="shelf-btn">тут нечего</button>
-                <button class="shelf-btn">тут нечего</button>
+                <button onclick="window.location.href='заброшка.html';" class="shelf-btn">тут нечего</button>
+                <button onclick="window.location.href='заброшка.html';" class="shelf-btn">тут нечего</button>
+                <button onclick="window.location.href='заброшка.html';" class="shelf-btn">тут нечего</button>
+                <button onclick="window.location.href='заброшка.html';" class="shelf-btn">тут нечего</button>
+                <button onclick="window.location.href='заброжка.html';" class="shelf-btn">тут нечего</button>
             </div>
 
             <div class="shelf">
-                <button class="shelf-btn">тут нечего</button>
-                <button class="shelf-btn">тут нечего</button>
-                <button class="shelf-btn">тут нечего</button>
-                <button class="shelf-btn">тут нечего</button>
-                <button class="shelf-btn">тут нечего</button>
+                <button onclick="window.location.href='заброшка.html';" class="shelf-btn">тут нечего</button>
+                <button onclick="window.location.href='заброшка.html';" class="shelf-btn">тут нечего</button>
+                <button onclick="window.location.href='заброшка.html';" class="shelf-btn">тут нечего</button>
+                <button onclick="window.location.href='заброшка.html';" class="shelf-btn">тут нечего</button>
+                <button onclick="window.location.href='заброшка.html';" class="shelf-btn">тут нечего</button>
             </div>
         </div>
     </section>
@@ -75,7 +79,7 @@
                 </a>
             </li>
             <li class="list-item">
-                <a href="https://t.me" style="color: #17afb5;">
+                <a href="https://t.me/+WOYp6oMQ0KM4OGMy" style="color: #17afb5;">
                     <i class="fab fa-telegram-plane"></i> телега
                 </a>
             </li>
@@ -255,7 +259,7 @@
         });
     };
 
-    window.addEventListener('load', generateRetroIcons);
+    window.addEventListener('DOMContentLoaded', generateRetroIcons);
 </script>
 <div class="feedback-box" style="position: relative; z-index: 20; background: #c0c0c0; border: 2px solid #fff; padding: 15px; width: 300px; box-shadow: 2px 2px 5px #000;">
     <div style="background: #000080; color: #fff; padding: 3px; font-weight: bold; margin-bottom: 10px;">Книга жалоб и предложений</div>
@@ -272,15 +276,32 @@
     <div id="form-status" style="margin-top: 10px; font-weight: bold; display: none;"></div>
 </div>
 
-<script src="https://jsdelivr.net"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
+    /* Подсказка для валидатора PyCharm, что emailjs существует глобально */
+    /** @namespace window.emailjs */
+    const emailjs = window.emailjs;
+
     (function(){
-        emailjs.init("z_xwGDmKpyyFor9JT");
+        if (typeof emailjs !== 'undefined') {
+            emailjs.init({
+                publicKey: "z_xwGDmKpyyFor9JT"
+            });
+        }
     })();
 
     window.addEventListener('load', function() {
         const voiceButton = document.querySelector('.custom-btn.btn-1');
         const formStatus = document.getElementById('form-status');
+        const feedbackBox = document.querySelector('.feedback-box');
+        const titleBar = feedbackBox ? feedbackBox.querySelector('div') : null;
+
+        /* Если скрипт еще не подгрузился, красим форму в серый цвет */
+        if (typeof emailjs === 'undefined') {
+            if (feedbackBox) feedbackBox.style.background = '#808080';
+            if (titleBar) titleBar.style.background = '#7f7f7f';
+            if (voiceButton) voiceButton.disabled = true;
+        }
 
         if (voiceButton) {
             voiceButton.addEventListener('click', function() {
@@ -297,14 +318,14 @@
                 const serviceID = 'service_botyk3h';
                 const templateID = 'template_w1k7ku4';
 
-                emailjs.sendForm(serviceID, templateID, myForm)
+                emailjs.sendForm(serviceID, templateID, '#contact-form')
                     .then(function() {
                         console.log('Успешно отправлено!');
                         if (formStatus) {
                             formStatus.style.color = 'green';
                             formStatus.innerText = 'Успешно доставлено в Proton Mail!';
                         }
-                        if (myForm) myForm.reset();
+                        myForm.reset();
                     }, function(error) {
                         console.error('Ошибка EmailJS:', error);
                         if (formStatus) {
@@ -316,6 +337,10 @@
         }
     });
 </script>
+
+
+
+
 
 
 
