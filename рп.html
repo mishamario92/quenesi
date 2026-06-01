@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>quenesi/ТЕЛЕГА</title>
+  <link rel="icon" href="иконка.png" sizes="any">
+  <style>
+
+    body {
+      margin: 0;
+      padding: 40px;
+      background-color: #fffaf0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .feed-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+
+    .tg-post {
+      width: 90%;
+      min-height: 250px;
+      background-color: #4a75ff;
+
+
+      background-image:
+                linear-gradient(to right, rgb(0 0 0 / 0.15) 4px, transparent 4px),
+                linear-gradient(to bottom, rgb(0 0 0 / 0.15) 4px, transparent 4px);
+      background-size: 20px 20px;
+
+
+      border: 4px solid #000000;
+      border-radius: 16px;
+      box-shadow: 8px 8px 0px #000000;
+
+      padding: 25px;
+      box-sizing: border-box;
+      color: white;
+
+      display: flex;
+      flex-direction: column;
+    }
+
+    .post-title {
+      font-size: 24px;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      border-bottom: 2px dashed rgba(0, 0, 0, 0.3);
+      padding-bottom: 5px;
+    }
+
+
+    #txt-content {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      font-family: sans-serif;
+      font-size: 46px;
+      line-height: 1.5;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+        .ybutton {
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+        cursor: pointer;
+    }
+    .ybutton img {
+        width: 80px;
+        height: auto;
+        display: block;
+        transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .ybutton:hover img {
+        transform: scale(1.15);
+        filter: brightness(1.2);
+    }
+
+    .ybutton:active img {
+        transform: scale(0.95);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="feed-container" id="feed-box">
+    <div class="tg-post">
+         <div class="post-title">Telegram Post</div>
+         <pre id="txt-content">Загрузка документа...</pre>
+    </div>
+  </div>
+        <button onclick="window.location.href='index.html';" class="ybutton"><img src="jkl.png"></button>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    fetch("whj.txt")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Файл не найден или сервер заблокировал доступ");
+            }
+            return response.text();
+        })
+        .then(text => {
+            document.getElementById("txt-content").textContent = text;
+        })
+        .catch(error => {
+            document.getElementById("txt-content").textContent = "Ошибка загрузки: " + error.message;
+            console.error(error);
+        });
+});
+</script>
+<script>
+
+    const localBase = 'icons/';
+    const totalIcons = 61;
+    const windowsIcons = [];
+    for (let i = 1; i <= totalIcons; i++) {
+        windowsIcons.push(`${i}.ico`);
+    }
+
+    const getRandom = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+    function makeIconDraggable(img) {
+        let isDragging = false;
+        let isMoved = false;
+        let startX, startY;
+        let shiftX, shiftY;
+
+        img.addEventListener('mousedown', function(e) {
+            if (e.button !== 0) return;
+
+            startX = e.clientX;
+            startY = e.clientY;
+            isMoved = false;
+            isDragging = true;
+
+            const rect = img.getBoundingClientRect();
+            shiftX = e.clientX - rect.left;
+            shiftY = e.clientY - rect.top;
+
+            img.style.zIndex = '1';
+
+            e.preventDefault();
+        });
+
+        document.addEventListener('mousemove', function(e) {
+            if (!isDragging) return;
+
+            if (Math.abs(e.clientX - startX) > 5 || Math.abs(e.clientY - startY) > 5) {
+                isMoved = true;
+            }
+
+            let newX = e.clientX - shiftX;
+            let newY = e.clientY - shiftY + window.scrollY;
+
+            img.style.left = `${newX}px`;
+            img.style.top = `${newY}px`;
+
+            img.style.transform = `rotate(${img.dataset.angle}deg)`;
+        });
+
+        document.addEventListener('mouseup', function(e) {
+            if (!isDragging) return;
+            isDragging = false;
+
+            img.style.zIndex = '1';
+
+            if (!isMoved) {
+                playRandomMusic();
+            }
+        });
+
+        img.ondragstart = function() { return false; };
+    }
+
+    const generateRetroIcons = () => {
+        const iconCount = getRandom(50, 80);
+        const spawnedIcons = [];
+        const minDistance = 70;
+        const screenWidth = window.innerWidth;
+
+        const screenHeight = Math.max(
+            document.body.scrollHeight,
+            document.documentElement.scrollHeight,
+            document.body.offsetHeight,
+            document.documentElement.offsetHeight,
+            document.body.clientHeight,
+            document.documentElement.clientHeight
+        );
+
+        for (let i = 0; i < iconCount; i++) {
+            const img = document.createElement('img');
+            const randomIconFile = windowsIcons[getRandom(0, windowsIcons.length - 1)];
+
+            img.src = `${localBase}${randomIconFile}`;
+            img.classList.add('retro-icon');
+            img.alt = 'Windows 95 Icon';
+
+            img.style.position = 'absolute';
+            img.style.pointerEvents = 'auto';
+            img.style.cursor = 'move';
+            img.style.userSelect = 'none';
+            img.style.webkitUserSelect = 'none';
+
+            img.style.zIndex = '1';
+
+            let posX, posY;
+            let attempts = 0;
+            let tooClose = false;
+
+            do {
+                tooClose = false;
+                posX = getRandom(30, screenWidth - 80);
+                posY = getRandom(30, screenHeight - 80);
+                attempts++;
+
+                for (let icon of spawnedIcons) {
+                    const dist = Math.hypot(posX - icon.x, posY - icon.y);
+                    if (dist < minDistance) {
+                        tooClose = true;
+                        break;
+                    }
+                }
+            } while (tooClose && attempts < 60);
+
+            spawnedIcons.push({ x: posX, y: posY });
+
+            const randomAngle = getRandom(-45, 45);
+            img.dataset.angle = randomAngle;
+
+            img.style.left = `${posX}px`;
+            img.style.top = `${posY}px`;
+            img.style.transform = `rotate(${randomAngle}deg)`;
+
+            document.body.appendChild(img);
+
+            makeIconDraggable(img);
+        }
+
+        const allDivs = document.querySelectorAll('div');
+        allDivs.forEach(div => {
+            const currentPosition = window.getComputedStyle(div).position;
+            if (currentPosition === 'static') {
+                div.style.position = 'relative';
+            }
+            div.style.zIndex = '10';
+        });
+    };
+
+    window.addEventListener('DOMContentLoaded', generateRetroIcons);
+</script>
+</body>
+</html>

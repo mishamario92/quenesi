@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>quenesi/галерея</title>
+    <link rel="icon" href="рол.png" sizes="any">
+    <link rel="stylesheet" href="css/all.css"/>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #f4f8fb;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 100vh;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    .gallery-container {
+        width: 100%;
+        max-width: 1200px;
+        padding: 80px 20px;
+        box-sizing: border-box;
+        z-index: 10;
+        position: relative;
+    }
+
+
+    .image-gallery {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        justify-items: center;
+    }
+
+
+    .image-box {
+        width: 100%;
+        max-width: 250px;
+        padding: 12px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+
+        border: 20px solid transparent;
+        border-image-source: url('рол.jpg');
+        border-image-slice: 30;
+        border-image-repeat: round;
+        box-shadow: -30px 16px 10px rgba(30, 30, 30, 0.47),
+                    0 0 150px #ffc800;
+    }
+
+    .image-box img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+
+    .image-title {
+        text-align: center;
+        margin-top: 15px;
+        padding: 5px 10px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #454545;
+        word-wrap: break-word;
+        background-color: #acacac;
+        border-radius: 10px;
+    }
+
+    body, .glow-box img {
+        user-select: text;
+        -webkit-user-select: text;
+    }
+
+    ::selection {
+        background: rgb(0 0 255 / 0);
+        color: rgb(255 0 0 / 0);
+    }
+    img::selection {
+        background: rgb(0 0 255 / 0);
+    }
+
+
+    .ybutton {
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+        cursor: pointer;
+    }
+    .ybutton img {
+        width: 80px;
+        height: auto;
+        display: block;
+        transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .ybutton:hover img {
+        transform: scale(1.15);
+        filter: brightness(1.2);
+    }
+
+    .ybutton:active img {
+        transform: scale(0.95);
+    }
+
+    @media (max-width: 992px) {
+        .image-gallery {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+    }
+
+
+    @media (max-width: 768px) {
+        .image-gallery {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .image-box {
+            border-width: 12px;
+            padding: 8px;
+        }
+        .ybutton img {
+            width: 60px;
+        }
+        .gallery-container {
+            padding-top: 100px;
+        }
+    }
+
+
+    @media (max-width: 480px) {
+        .image-gallery {
+            grid-template-columns: repeat(1, 1fr);
+            gap: 25px;
+        }
+        .image-box {
+            max-width: 280px;
+        }
+    }
+
+
+
+</style>
+</head>
+<body>
+
+<div class="image-gallery">
+
+    <div class="image-box">
+        <img src="галерея/1.03.25.jpg" alt="Картинка 1">
+        <div class="image-title">1.03.25</div>
+    </div>
+    <div class="image-box">
+        <img src="галерея/2025-06-24.jpg" alt="Картинка 2">
+        <div class="image-title">2025-06-24</div>
+    </div>
+    <div class="image-box">
+        <img src="галерея/2025-06-24_1.jpg" alt="Картинка 3">
+        <div class="image-title">2025-06-24</div>
+    </div>
+    <div class="image-box">
+        <img src="галерея/2026-02-02.jpg" alt="Картинка 4">
+        <div class="image-title">2026-02-02</div>
+    </div>
+
+
+    <div class="image-box">
+        <img src="галерея/2026-05-30.jpg" alt="Картинка 5">
+        <div class="image-title">2026-04-4</div>
+    </div>
+    <div class="image-box">
+        <img src="галерея/2026-05-30_1.jpg" alt="Картинка 6">
+        <div class="image-title">2026-04-29</div>
+    </div>
+    <div class="image-box">
+        <img src="галерея/2026-05-30_2.jpg" alt="Картинка 7">
+        <div class="image-title">2026-04-4</div>
+    </div>
+
+
+
+    <div class="image-box">
+        <img src="галерея/2026-05-30_4.jpg" alt="Картинка 9">
+        <div class="image-title">2025-10-5</div>
+    </div>
+    <div class="image-box">
+        <img src="галерея/2026-05-30_5.jpg" alt="Картинка 10">
+        <div class="image-title">2025-09-28</div>
+    </div>
+    <div class="image-box">
+        <img src="галерея/2026-05-30_6.jpg" alt="Картинка 11">
+        <div class="image-title">2025-09-30</div>
+    </div>
+    <div class="image-box">
+        <img src="галерея/2026-05-30_7.jpg" alt="Картинка 12">
+        <div class="image-title">2025-08-7</div>
+    </div>
+
+
+    <div class="image-box">
+        <img src="галерея/2026-05-30_8.jpg" alt="Картинка 13">
+        <div class="image-title">2025-08-7</div>
+    </div>
+    <div class="image-box">
+        <img src="галерея/2026-05-30_9.jpg" alt="Картинка 14">
+        <div class="image-title">01.03.2025</div>
+    </div>
+    <div class="image-box">
+        <img src="галерея/2026.31.05.png" alt="Картинка 14">
+        <div class="image-title">2026.31.05</div>
+    </div>
+        <div class="image-box">
+        <img src="галерея/2026.3.18.jpg" alt="Картинка 14">
+        <div class="image-title">2026.3.18</div>
+    </div>
+    </div>
+        <div class="image-box">
+        <img src="галерея/1.5.2026.png" alt="Картинка 14">
+        <div class="image-title">1.5.2026</div>
+    </div>
+
+</div>
+
+
+    <button onclick="window.location.href='index.html';" class="ybutton"><img src="jkl.png"></button>
+
+<script>
+    const windowsIcons = [];
+    const getRandom = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+    function makeIconDraggable(img) {
+        let isDragging = false;
+        let isMoved = false;
+        let startX, startY;
+        let shiftX, shiftY;
+
+        img.addEventListener('mousedown', function(e) {
+            if (e.button !== 0) return;
+
+            startX = e.clientX;
+            startY = e.clientY;
+            isMoved = false;
+            isDragging = true;
+
+            const rect = img.getBoundingClientRect();
+            shiftX = e.clientX - rect.left;
+            shiftY = e.clientY - rect.top;
+
+            img.style.zIndex = '5';
+
+            e.preventDefault();
+        });
+
+        document.addEventListener('mousemove', function(e) {
+            if (!isDragging) return;
+
+            if (Math.abs(e.clientX - startX) > 5 || Math.abs(e.clientY - startY) > 5) {
+                isMoved = true;
+            }
+
+            let newX = e.clientX - shiftX;
+            let newY = e.clientY - shiftY + window.scrollY;
+
+            img.style.left = `${newX}px`;
+            img.style.top = `${newY}px`;
+
+            img.style.transform = `rotate(${img.dataset.angle}deg)`;
+        });
+
+        document.addEventListener('mouseup', function(e) {
+            if (!isDragging) return;
+            isDragging = false;
+
+            img.style.zIndex = '1';
+
+            if (!isMoved) {
+
+                if (typeof playRandomMusic === "function") {
+                    playRandomMusic();
+                }
+            }
+        });
+
+        img.ondragstart = function() { return false; };
+    }
+
+    const generateRetroIcons = () => {
+        const iconCount = getRandom(15, 30);
+        const spawnedIcons = [];
+        const minDistance = 50;
+        const screenWidth = window.innerWidth;
+
+        const screenHeight = Math.max(
+            document.body.scrollHeight,
+            document.documentElement.scrollHeight,
+            document.body.offsetHeight,
+            document.documentElement.offsetHeight,
+            document.body.clientHeight,
+            document.documentElement.clientHeight
+        );
+
+        for (let i = 0; i < iconCount; i++) {
+            const img = document.createElement('img');
+
+            img.src = `мята.png`;
+            img.classList.add('retro-icon');
+            img.alt = 'Windows 95 Icon';
+
+
+            img.style.width = '80px';
+            img.style.height = 'auto';
+
+            img.style.position = 'absolute';
+            img.style.pointerEvents = 'auto';
+            img.style.cursor = 'move';
+            img.style.userSelect = 'none';
+            img.style.webkitUserSelect = 'none';
+
+            img.style.zIndex = '1';
+
+            let posX, posY;
+            let attempts = 0;
+            let tooClose = false;
+
+            do {
+                tooClose = false;
+                posX = getRandom(10, screenWidth - 40);
+                posY = getRandom(10, screenHeight - 40);
+                attempts++;
+
+                for (let icon of spawnedIcons) {
+                    const dist = Math.hypot(posX - icon.x, posY - icon.y);
+                    if (dist < minDistance) {
+                        tooClose = true;
+                        break;
+                    }
+                }
+            } while (tooClose && attempts < 60);
+
+            spawnedIcons.push({ x: posX, y: posY });
+
+            const randomAngle = getRandom(-45, 45);
+            img.dataset.angle = randomAngle;
+
+            img.style.left = `${posX}px`;
+            img.style.top = `${posY}px`;
+            img.style.transform = `rotate(${randomAngle}deg)`;
+
+            document.body.appendChild(img);
+
+            makeIconDraggable(img);
+        }
+
+        const allDivs = document.querySelectorAll('div');
+        allDivs.forEach(div => {
+            const currentPosition = window.getComputedStyle(div).position;
+            if (currentPosition === 'static') {
+                div.style.position = 'relative';
+            }
+            div.style.zIndex = '1000';
+        });
+    };
+
+    window.addEventListener('DOMContentLoaded', generateRetroIcons);
+</script>
+</body>
+</html>
