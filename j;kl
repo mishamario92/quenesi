@@ -1,62 +1,68 @@
         html {
             scroll-behavior: smooth;
-            background-color: #0d0e15; /* Глубокий кибер-черный */
         }
         body {
             margin: 0;
-            font-family: 'Courier New', monospace; /* Настоящий хакерский шрифт */
-            background-color: #0d0e15;
-            color: #00ff99; /* Фирменный неоновый зеленый */
+            font-family: "MS Sans Serif", Geneva, sans-serif; /* Родной шрифт Windows 95 */
+            background-color: #008080; /* Тот самый культовый стандартный цвет рабочего стола (Teal) */
             position: relative;
             padding: 0;
             min-height: 100vh;
-            /* Сетка на заднем фоне всего сайта */
-            background-image:
-                linear-gradient(to right, rgba(255, 0, 85, 0.05) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 0, 85, 0.05) 1px, transparent 1px);
-            background-size: 30px 30px;
         }
 
-        /* ВЕРХНЯЯ ПАНЕЛЬ ИЗ БУДУЩЕГО */
+        /* ВЕРХНЯЯ ПАНЕЛЬ КАК СТАНДАРТНОЕ ОКНО WINDOWS */
         .topbar {
             position: fixed;
             top: 10px;
             left: 10%;
             width: 80%;
             height: 60px;
-            background-color: rgba(13, 14, 21, 0.85);
-            backdrop-filter: blur(10px); /* Эффект матового стекла */
+            background-color: #c0c0c0; /* Стандартный серый цвет панелей (Silver) */
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 20px;
-            border: 2px solid #00ffff; /* Неоновый бирюзовый контур */
-            box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.4);
             z-index: 1000;
-            border-radius: 0px; /* Киберпанк не любит кругляшки, только острые углы */
-            clip-path: polygon(0% 0%, 95% 0%, 100% 50%, 95% 100%, 0% 100%); /* Скошенный угол справа */
+            margin-right: auto;
+
+            /* Знаменитая трехмерная выпуклая рамка Windows 95 */
+            border-top: 2px solid #fff;
+            border-left: 2px solid #fff;
+            border-right: 2px solid #808080;
+            border-bottom: 2px solid #808080;
+            box-shadow: 1px 1px 0px 0px #000;
         }
 
+        /* КНОПКИ В СТИЛЕ WINDOWS 95 */
         .topbar a {
-            color: #00ffff;
+            color: #000000;
             text-decoration: none;
-            padding: 8px 16px;
-            background-color: rgba(255, 0, 85, 0.1);
-            border: 1px solid #ff0055;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all 0.3s;
+            padding: 6px 18px;
+            background-color: #c0c0c0;
+            font-weight: normal;
+            font-size: 14px;
+
+            /* Выпуклая кнопка */
+            border-top: 2px solid #fff;
+            border-left: 2px solid #fff;
+            border-right: 2px solid #808080;
+            border-bottom: 2px solid #808080;
+            box-shadow: 1px 1px 0px 0px #000;
+            transition: none; /* В 1995 году не было плавных анимаций */
         }
 
         .topbar a:hover {
-            background-color: #ff0055;
-            color: #000;
-            box-shadow: 0 0 15px #ff0055;
-            text-shadow: none;
+            background-color: #dcdcdc; /* Легкий отсвет при наведении */
         }
+
+        /* Эффект физического вдавливания кнопки при клике */
         .topbar a:active {
-            transform: scale(0.95);
+            border-top: 2px solid #808080;
+            border-left: 2px solid #808080;
+            border-right: 2px solid #fff;
+            border-bottom: 2px solid #fff;
+            box-shadow: none;
+            transform: translate(1px, 1px);
         }
 
         .section {
@@ -64,15 +70,15 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 80px 20px;
+            padding: 60px 20px;
             font-size: 2rem;
-            color: #fff;
+            color: #000000;
             background: none;
             border: none;
             box-sizing: border-box;
         }
 
-        /* СИНЯЯ ЗОНА С ПАДЖЕМ — ТЕПЕРЬ ТЕРМИНАЛ МАТРИЦЫ */
+        /* СИНЯЯ ЗОНА С ПАДЖЕМ — ТЕПЕРЬ КАК ОКНО ПРИЛОЖЕНИЯ ИЛИ ОБОИ */
         .texture-rectangle {
             position: relative;
             width: 100%;
@@ -80,234 +86,30 @@
             height: 524px;
             margin: 30px auto;
             box-sizing: border-box;
-            border-radius: 0px; /* Рубленый стиль */
-            background-color: #121625;
-            border: 3px solid #ff0055;
-            background-size: 20px 20px;
-            box-shadow: 0 0 25px rgba(255, 0, 85, 0.3);
-            /* Лазерная сетка */
-            background-image:
-                linear-gradient(to right, rgba(0, 255, 255, 0.1) 2px, transparent 2px),
-                linear-gradient(to bottom, rgba(0, 255, 255, 0.1) 2px, transparent 2px);
-            overflow: visible;
-            display: flex;
-            align-items: center;
-            padding: 15px;
-        }
-
-        .texture-rectangle .image-wrapper {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: smoothFlyIn 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-        }
-
-        .texture-rectangle img {
-            width: 70%;
-            height: 70%;
-            object-fit: contain;
-            transition: opacity 0.3s ease-in-out;
-        }
-
-        .texture-rectangle .img-base {
-            position: relative;
-            z-index: 1;
-            filter: drop-shadow(0 0 10px #ff0055); /* Свечение Паджа */
-        }
-
-        .texture-rectangle .img-hover {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 2;
-            opacity: 0;
-            filter: drop-shadow(0 0 20px #00ff99) hue-rotate(90deg); /* Кислотный эффект при ховере */
-        }
-
-        .texture-rectangle:hover .img-hover {
-            opacity: 1;
-        }
-        .texture-rectangle:hover .img-base {
-            opacity: 0;
-        }
-
-        @keyframes smoothFlyIn {
-            from {
-                transform: translate(-100vw, 0);
-                opacity: 0;
-            }
-            to {
-                transform: translate(-180px, 0);
-                opacity: 1;
-            }
-        }
-
-        /* ШКАФ С ПОЛКАМИ — ОРУЖЕЙНЫЙ СТЕНД ИЗ 2077 ГОДА */
-        .bookcase {
-            width: 100%;
-            max-width: 1000px;
-            margin: 30px auto;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .shelf {
-            display: grid !important;
-            grid-template-columns: repeat(5, 1fr) !important;
-            width: 100%;
-            box-sizing: border-box;
-            background-color: #141929; /* Вместо дерева — хай-тек металл */
-            align-items: center;
-            justify-content: center;
-            border: 2px solid #00ff99; /* Зеленый лазерный контур */
-            box-shadow: 0 0 20px rgba(0, 255, 153, 0.2);
-            border-radius: 0px;
-            padding: 20px;
-        }
-
-        /* ЯЧЕЙКИ ШКАФА */
-        .shelf-btn {
-            width: 100%;
-            height: 100%;
-            min-height: 160px;
-            margin: 0;
-            box-sizing: border-box;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            border: 1px dashed #00ffff;
-            border-radius: 0px;
-            transform: scale(0.93);
-            background: rgba(0, 255, 255, 0.03);
-            box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.1);
-            color: #00ffff;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-            font-weight: bold;
-            text-transform: uppercase;
-            text-shadow: 0 0 5px #00ffff;
-            transition: all 0.2s ease;
-        }
-
-        .shelf-btn:hover {
-            transform: scale(0.95) rotate(1deg); /* Легкий перекос матрицы */
-            background: rgba(0, 255, 255, 0.15);
-            border-color: #00ff99;
-            color: #00ff99;
-            box-shadow: 0 0 15px rgba(0, 255, 153, 0.4);
-            text-shadow: 0 0 8px #00ff99;
-        }
-
-        /* ССЫЛКИ И СОЦСЕТИ */
-        .list-item a {
-            color: #00ffff;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-weight: bold;
-            letter-spacing: 1px;
-            text-shadow: 0 0 5px #00ffff;
-            transition: all 0.2s ease;
-        }
-
-        .list-item a i {
-            color: #ff0055; /* Иконки брендов светятся розовым */
-            margin-right: 8px;
-            filter: drop-shadow(0 0 5px #ff0055);
-        }
-
-        .list-item a:hover {
-            color: #00ff99;
-            text-shadow: 0 0 10px #00ff99;
-            text-decoration: none;
-        }
-
-        button {
-          margin: 20px;
-        }
-
-        /* КНОПКА ЗАПУСКА "ОЗВУЧИТЬ" */
-        .custom-btn {
-          width: 140px;
-          height: 45px;
-          color: #fff;
-          border-radius: 0px;
-          padding: 10px 25px;
-          font-family: 'Courier New', sans-serif;
-          font-weight: bold;
-          text-transform: uppercase;
-          background: transparent;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          position: relative;
-          display: inline-block;
-          outline: none;
-        }
-
-        .btn-1 {
-          background: #ff0055;
-          border: 2px solid #00ffff;
-          box-shadow: 4px 4px 0px #00ffff; /* Плоская жесткая кибер-тень */
-          color: #ffffff;
-          text-shadow: 0 0 5px #fff;
-        }
-
-        .btn-1:hover {
-           background: #00ffff;
-           color: #000;
-           border-color: #ff0055;
-           box-shadow: -4px -4px 0px #ff0055;
-           text-shadow: none;
-        }
-
-        /* ЛЕТАЮЩИЕ ИКОНКИ СТАНОВЯТСЯ ГОЛОГРАММАМИ */
-        .retro-icon {
-            position: absolute;
-            width: 32px;
-            height: 32px;
-            user-select: none;
-            pointer-events: none;
-            z-index: -10;
-            image-rendering: pixelated;
-            /* Делаем старые иконки неоново-прозрачными синими силуэтами */
-            filter: drop-shadow(0 0 8px #00ffff) opacity(0.6) saturate(3);
-        }
-                /* Настройки синей плашки (контейнера) */
-        .texture-rectangle {
-            position: relative;
-            width: 100%;
-            max-width: 1000px;
-            height: 524px;
-            margin: 30px auto;
-            box-sizing: border-box;
-            border-radius: 20px;
-            background-color: #4376dc;
+            background-color: #4376dc; /* Синий экран */
             background-size: 40px 40px;
-            box-shadow: 0 4px 20px rgba(0, 51, 153, 0.15);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 40px;
+
+            /* Вдавленная классическая рамка */
+            border-top: 2px solid #808080;
+            border-left: 2px solid #808080;
+            border-right: 2px solid #fff;
+            border-bottom: 2px solid #fff;
+
             background-image:
                 linear-gradient(to right, rgb(0 0 0 / 0.15) 4px, transparent 4px),
                 linear-gradient(to bottom, rgb(0 0 0 / 0.15) 4px, transparent 4px);
-            overflow: hidden; /* Чтобы вылетающие элементы не ломали экран при загрузке */
-            display: flex;
-            align-items: center;
-            justify-content: space-between; /* Падж слева, текст справа */
-            padding: 40px;
         }
 
-        /* Позиционирование Паджа */
         .texture-rectangle .image-wrapper {
             position: absolute;
             top: 0;
             left: 0;
-            width: 50%; /* Занимает левую половину */
+            width: 50%;
             height: 100%;
             display: flex;
             align-items: center;
@@ -320,6 +122,7 @@
             height: 80%;
             object-fit: contain;
             transition: opacity 0.4s ease-in-out;
+            image-rendering: pixelated; /* Четкие пиксели для духа эпохи */
         }
 
         .texture-rectangle .img-base { position: relative; z-index: 1; }
@@ -327,69 +130,182 @@
         .texture-rectangle:hover .img-hover { opacity: 1; }
         .texture-rectangle:hover .img-base { opacity: 0; }
 
-        /* БЛОК С ТЕКСТОМ (Вылетает справа налево) */
+        /* БЛОК С ТЕКСТОМ (Вылетает справа) */
         .texture-rectangle .text-block {
             position: absolute;
             right: 0;
             top: 0;
-            width: 50%; /* Занимает правую половину */
+            width: 50%;
             height: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Большой текст вверх, маленький вниз */
-            align-items: flex-end; /* Выравнивание текста по правому краю */
-            padding: 60px 40px; /* Отступы от краев синей плашки */
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 60px 40px;
             box-sizing: border-box;
             z-index: 5;
             animation: textFlyIn 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
-        /* Большой текст (Справа-Сверху) с кибер-подсветкой */
+        /* Большой текст (Справа-Сверху) в стиле классических шрифтов */
         .cyber-title {
             margin: 0;
-            font-size: 2.8rem;
-            font-weight: 900;
-            color: #00ffcc; /* Неоновый бирюзовый */
-            text-shadow: 0 0 10px #00ffcc, 0 0 20px #4376dc;
-            font-family: 'Courier New', monospace;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffffff; /* Чистый белый, как текст на синем экране смерти или заставках */
+            text-shadow: 2px 2px 0px #000000; /* Четкая пиксельная тень букв вместо размытия */
+            font-family: "MS Sans Serif", Geneva, sans-serif;
             text-align: right;
-            text-transform: uppercase;
-            letter-spacing: 2px;
         }
 
         /* Маленький текст (Справа-Внизу) */
         .cyber-subtitle {
             margin: 0;
-            font-size: 1.1rem;
-            color: #ff0077; /* Неоновый розовый */
-            text-shadow: 0 0 8px #ff0077;
-            font-family: monospace;
+            font-size: 1rem;
+            color: #ffff00; /* Ярко-желтый ретро-текст для привлечения внимания */
+            text-shadow: 1px 1px 0px #000000;
+            font-family: "MS Sans Serif", Geneva, sans-serif;
             text-align: right;
-            max-width: 320px; /* Чтобы красиво переносился по строкам */
+            max-width: 320px;
             line-height: 1.4;
         }
 
-        /* АНИМАЦИИ ВЫЛЕТА */
-        /* Падж летит слева направо */
-        @keyframes smoothFlyIn {
-            from {
-                transform: translate(-100vw, 0);
-                opacity: 0;
-            }
-            to {
-                transform: translate(20px, 0); /* Аккуратно встает у левого края */
-                opacity: 1;
-            }
+        /* ШКАФ С ПОЛКАМИ КАК СЕРЫЙ ИНТЕРФЕЙС ПРОГРАММЫ */
+        .bookcase {
+            width: 100%;
+            max-width: 1000px;
+            margin: 30px auto;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
-        /* Текст летит справа налево навстречу Паджу */
-        @keyframes textFlyIn {
-            from {
-                transform: translate(100vw, 0);
-                opacity: 0;
-            }
-            to {
-                transform: translate(0, 0);
-                opacity: 1;
-            }
+        .shelf {
+            display: grid !important;
+            grid-template-columns: repeat(5, 1fr) !important;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #c0c0c0; /* Серый пластик Win95 */
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+
+            /* Сложная рамка: выдавливаем рамку программы */
+            border-top: 2px solid #fff;
+            border-left: 2px solid #fff;
+            border-right: 2px solid #808080;
+            border-bottom: 2px solid #808080;
+            box-shadow: 1px 1px 0px 0px #000;
         }
+
+        /* ЯЧЕЙКИ ШКАФА (КАК ВДАВЛЕННЫЕ ПОЛЯ ВВОДА) */
+        .shelf-btn {
+            width: 100%;
+            height: 100%;
+            min-height: 160px;
+            margin: 0;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transform: scale(0.95);
+            background-color: #ffffff; /* Белые текстовые поля внутри серого окна */
+            color: #000000;
+            font-family: "MS Sans Serif", Geneva, sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+
+            /* Эффект глубокого вдавливания (Поле текстового ввода) */
+            border-top: 2px solid #808080;
+            border-left: 2px solid #808080;
+            border-right: 2px solid #fff;
+            border-bottom: 2px solid #fff;
+            box-shadow: inset 1px 1px 0px #000;
+            transition: none;
+        }
+
+        .shelf-btn:hover {
+            background-color: #f0f0f0; /* Легкое изменение при наведении */
+        }
+
+        /* КНОПКА "ОЗВУЧИТЬ" */
+        .custom-btn {
+          width: 130px;
+          height: 40px;
+          color: #000;
+          padding: 5px 20px;
+          font-family: "MS Sans Serif", sans-serif;
+          font-weight: normal;
+          background-color: #c0c0c0;
+          cursor: pointer;
+          position: relative;
+          display: inline-block;
+          outline: none;
+
+          /* Стандартная дефолтная кнопка Windows */
+          border-top: 2px solid #fff;
+          border-left: 2px solid #fff;
+          border-right: 2px solid #808080;
+          border-bottom: 2px solid #808080;
+          box-shadow: 1px 1px 0px 0px #000;
+        }
+
+        .btn-1 {
+          background-color: #c0c0c0;
+          border-top: 2px solid #fff;
+          border-left: 2px solid #fff;
+          border-right: 2px solid #808080;
+          border-bottom: 2px solid #808080;
+        }
+
+        .btn-1:active {
+           border-top: 2px solid #808080;
+           border-left: 2px solid #808080;
+           border-right: 2px solid #fff;
+           border-bottom: 2px solid #fff;
+           box-shadow: none;
+           transform: translate(1px, 1px);
+        }
+
+        .list-item a {
+            color: #000080; /* Классический темно-синий цвет гиперссылок старого интернета */
+            text-decoration: underline;
+        }
+
+        .list-item a:hover {
+            color: #0000ff; /* Яркий синий при наведении */
+        }
+
+        .retro-icon {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            user-select: none;
+            pointer-events: none;
+            z-index: -10;
+            image-rendering: pixelated; /* Убирает любое сглаживание иконок рабочего стола */
+        }
+
+        /* АНИМАЦИИ */
+        @keyframes smoothFlyIn {
+            from { transform: translate(-100vw, 0); opacity: 0; }
+            to { transform: translate(20px, 0); opacity: 1; }
+        }
+        button {
+          cursor: pointer;
+        }
+
+        div {
+          cursor: help;
+        }
+
+        input {
+          cursor: not-allowed;
+        }
+
+        p {
+          cursor: zoom-in;
+        }
+
