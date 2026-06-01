@@ -1,75 +1,78 @@
         html {
             scroll-behavior: smooth;
+            background-color: #0d0e15; /* Глубокий кибер-черный */
         }
-        @font-face {
-            font-family: 'Snowstorm';
-            src: url('fonts/Snowstorm.otf') format('opentype');
-            font-weight: bold;
-            font-style: normal;
-        }
-
-
         body {
             margin: 0;
-            font-family: monospace;
-            background-color: #fffaf0; /* ИСПРАВЛЕНО: добавлена точка с запятой */
-            position: relative;        /* Теперь работает корректно */
+            font-family: 'Courier New', monospace; /* Настоящий хакерский шрифт */
+            background-color: #0d0e15;
+            color: #00ff99; /* Фирменный неоновый зеленый */
+            position: relative;
             padding: 0;
             min-height: 100vh;
+            /* Сетка на заднем фоне всего сайта */
+            background-image:
+                linear-gradient(to right, rgba(255, 0, 85, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 0, 85, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
         }
 
+        /* ВЕРХНЯЯ ПАНЕЛЬ ИЗ БУДУЩЕГО */
         .topbar {
             position: fixed;
-            top: 0;
+            top: 10px;
             left: 10%;
             width: 80%;
             height: 60px;
-            background-color: rgb(0);
+            background-color: rgba(13, 14, 21, 0.85);
+            backdrop-filter: blur(10px); /* Эффект матового стекла */
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 20px;
-            outline: thick dashed black;
-            box-shadow: 15px 15px 0px #202020;
+            border: 2px solid #00ffff; /* Неоновый бирюзовый контур */
+            box-shadow: 0px 0px 15px rgba(0, 255, 255, 0.4);
             z-index: 1000;
-            border-radius: 20px;
-            margin-right: auto;
+            border-radius: 0px; /* Киберпанк не любит кругляшки, только острые углы */
+            clip-path: polygon(0% 0%, 95% 0%, 100% 50%, 95% 100%, 0% 100%); /* Скошенный угол справа */
         }
 
         .topbar a {
-            color: #000000;
+            color: #00ffff;
             text-decoration: none;
-            padding: 10px 20px;
-            background-color: rgb(0);
-            border-radius: 5px;
+            padding: 8px 16px;
+            background-color: rgba(255, 0, 85, 0.1);
+            border: 1px solid #ff0055;
             font-weight: bold;
-            box-shadow: 10px 10px 0px #202020;
-            transition: background 0.3s;
-            outline: thick dashed black;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
         }
 
         .topbar a:hover {
-            background-color: #a6ffc3;
+            background-color: #ff0055;
+            color: #000;
+            box-shadow: 0 0 15px #ff0055;
+            text-shadow: none;
         }
         .topbar a:active {
-            transform: translate(4px, 4px); box-shadow: 0px 0px 0px #000;
+            transform: scale(0.95);
         }
 
         .section {
-            /* ИСПРАВЛЕНО: вместо жесткого height используем min-height,
-               чтобы секции растягивались под контент и иконки видели реальную высоту */
             min-height: 85vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 60px 20px; /* Увеличили отступы, чтобы контент не наезжал друг на друга */
-            font-size: 3rem;
-            color: #000000;
+            padding: 80px 20px;
+            font-size: 2rem;
+            color: #fff;
             background: none;
             border: none;
             box-sizing: border-box;
         }
 
+        /* СИНЯЯ ЗОНА С ПАДЖЕМ — ТЕПЕРЬ ТЕРМИНАЛ МАТРИЦЫ */
         .texture-rectangle {
             position: relative;
             width: 100%;
@@ -77,23 +80,19 @@
             height: 524px;
             margin: 30px auto;
             box-sizing: border-box;
-            border-radius: 20px;
-            background-color: #4376dc;
-            background-size: 40px 40px;
-            box-shadow: 0 4px 20px rgba(0, 51, 153, 0.15);
+            border-radius: 0px; /* Рубленый стиль */
+            background-color: #121625;
+            border: 3px solid #ff0055;
+            background-size: 20px 20px;
+            box-shadow: 0 0 25px rgba(255, 0, 85, 0.3);
+            /* Лазерная сетка */
             background-image:
-                linear-gradient(to right, rgb(0 0 0 / 0.15) 4px, transparent 4px),
-                linear-gradient(to bottom, rgb(0 0 0 / 0.15) 4px, transparent 4px);
+                linear-gradient(to right, rgba(0, 255, 255, 0.1) 2px, transparent 2px),
+                linear-gradient(to bottom, rgba(0, 255, 255, 0.1) 2px, transparent 2px);
             overflow: visible;
             display: flex;
             align-items: center;
             padding: 15px;
-        }
-
-
-            .btn-icon {
-              width: 48px;
-              height: 48px;
         }
 
         .texture-rectangle .image-wrapper {
@@ -112,12 +111,13 @@
             width: 70%;
             height: 70%;
             object-fit: contain;
-            transition: opacity 0.4s ease-in-out;
+            transition: opacity 0.3s ease-in-out;
         }
 
         .texture-rectangle .img-base {
             position: relative;
             z-index: 1;
+            filter: drop-shadow(0 0 10px #ff0055); /* Свечение Паджа */
         }
 
         .texture-rectangle .img-hover {
@@ -127,6 +127,7 @@
             transform: translate(-50%, -50%);
             z-index: 2;
             opacity: 0;
+            filter: drop-shadow(0 0 20px #00ff99) hue-rotate(90deg); /* Кислотный эффект при ховере */
         }
 
         .texture-rectangle:hover .img-hover {
@@ -136,124 +137,18 @@
             opacity: 0;
         }
 
-
         @keyframes smoothFlyIn {
             from {
                 transform: translate(-100vw, 0);
                 opacity: 0;
             }
             to {
-
                 transform: translate(-180px, 0);
                 opacity: 1;
             }
         }
 
-
-        .shelf {
-            display: grid !important;
-            grid-template-columns: repeat(5, 1fr) !important;
-            width: 100%;
-            box-sizing: border-box;
-            background-color: #9e7b55;
-            align-items: center;
-            justify-content: center;
-            border: 4px solid #64492c;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-            border-radius: 20px;
-            padding: 15px;
-        }
-        .shelf1 {
-            display: grid !important;
-            grid-template-columns: repeat(5, 1fr) !important;
-            width: 100%;
-            box-sizing: border-box;
-            align-items: center;
-            justify-content: center;
-            padding: 15px;
-
-            /* ЧЕРНЫЙ БАЗОВЫЙ ФОН И СЛОЖНЫЙ ГЛИТЧ-ГРАДИЕНТ */
-            background-color: #0b0b0b;
-            background-image:
-                /* 1. Горизонтальные неоновые полосы */
-                linear-gradient(rgba(255, 0, 128, 0.3) 0%, rgba(255, 0, 128, 0.3) 10%, transparent 10%, transparent 100%),
-                linear-gradient(90deg, rgba(0, 255, 255, 0.4) 0%, rgba(0, 255, 255, 0.4) 15%, transparent 15%, transparent 100%),
-                /* 2. Тонкие горизонтальные пиксельные линии */
-                repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05) 1px, transparent 1px, transparent 4px),
-                /* 3. Крупные цветные блоки (как на картинке) */
-                linear-gradient(45deg, transparent 45%, rgba(0, 255, 0, 0.25) 45%, rgba(0, 255, 0, 0.25) 55%, transparent 55%),
-                linear-gradient(135deg, transparent 40%, rgba(100, 0, 255, 0.3) 40%, rgba(100, 0, 255, 0.3) 50%, transparent 50%);
-
-            /* Задаем размеры и повторение для глитч-блоков */
-            background-size: 100% 40px, 150px 100%, 100% 4px, 300px 300px, 250px 250px;
-            background-repeat: repeat-y, repeat-x, repeat, repeat, repeat;
-
-            /* ЗАПУСК АНИМАЦИИ ПОМЕХ (они будут постоянно дергаться) */
-            animation: glitch-bg 0.4s infinite steps(2);
-
-            /* КИБЕРПАНК РАМКА С НЕОНОВЫМ СВЕЧЕНИЕМ */
-            border: 4px solid #00ffff;
-            box-shadow:
-                0 0 15px rgba(0, 255, 255, 0.5),
-                inset 0 0 15px rgba(255, 0, 128, 0.5);
-            border-radius: 20px;
-        }
-
-        /* ЭФФЕКТ ДВИЖЕНИЯ И ПОЛОМОК НА ФОНЕ */
-        @keyframes glitch-bg {
-            0% {
-                background-position: 0 0, 0 0, 0 0, 0 0, 0 0;
-                filter: hue-rotate(0deg) contrast(1.2);
-            }
-            25% {
-                background-position: 20px -50px, -30px 10px, 0 2px, 50px -20px, 10px 40px;
-                filter: hue-rotate(90deg) saturate(1.5);
-            }
-            50% {
-                background-position: -10px 20px, 40px -40px, 0 -1px, -30px 60px, -20px -10px;
-                filter: hue-rotate(180deg) brightness(1.3);
-            }
-            75% {
-                background-position: 5px -10px, -15px 30px, 0 0, 10px -10px, 40px 15px;
-                filter: hue-rotate(270deg) contrast(1.5);
-            }
-            100% {
-                background-position: 0 0, 0 0, 0 0, 0 0, 0 0;
-                filter: hue-rotate(360deg) contrast(1.2);
-            }
-        }
-
-        .shelf2 {
-            display: grid !important;
-            grid-template-columns: repeat(5, 1fr) !important;
-            width: 100%;
-            box-sizing: border-box;
-            background-color: #4976ff;
-            align-items: center;
-            justify-content: center;
-            border: 8px solid #ffffff;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-            border-radius: 20px;
-            padding: 15px;
-        }
-        .shelf3 {
-            display: grid !important;
-            /* Изменено: теперь сетка состоит из одной колонки на всю ширину */
-            grid-template-columns: 1fr !important;
-            width: 100%;
-            box-sizing: border-box;
-            background-color: #c52020;
-
-            /* Эти два свойства теперь будут идеально центрировать одну кнопку */
-            align-items: center;       /* Центр по вертикали */
-            justify-items: center;     /* Центр по горизонтали для содержимого Grid */
-
-            border: 8px solid #ff5d5d;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-            border-radius: 20px;
-            padding: 15px;
-        }
-
+        /* ШКАФ С ПОЛКАМИ — ОРУЖЕЙНЫЙ СТЕНД ИЗ 2077 ГОДА */
         .bookcase {
             width: 100%;
             max-width: 1000px;
@@ -261,8 +156,24 @@
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 25px;
         }
+
+        .shelf {
+            display: grid !important;
+            grid-template-columns: repeat(5, 1fr) !important;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #141929; /* Вместо дерева — хай-тек металл */
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #00ff99; /* Зеленый лазерный контур */
+            box-shadow: 0 0 20px rgba(0, 255, 153, 0.2);
+            border-radius: 0px;
+            padding: 20px;
+        }
+
+        /* ЯЧЕЙКИ ШКАФА */
         .shelf-btn {
             width: 100%;
             height: 100%;
@@ -273,106 +184,91 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            border: 1px solid #001a4d;
-            border-radius: 24px;
+            border: 1px dashed #00ffff;
+            border-radius: 0px;
             transform: scale(0.93);
-            background: linear-gradient(
-                135deg,
-                rgba(255, 255, 255, 0.15) 0%,
-                rgba(255, 255, 255, 0.03) 100%
-            );
-            box-shadow:
-                0 4px 12px rgba(0, 0, 0, 0.15),
-                inset 0 1px 2px rgba(255, 255, 255, 0.3);
-            color: #ffffff;
-            font-family: system-ui, -apple-system, sans-serif;
-            font-size: 15px;
-            font-weight: 500;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-            transition: all 0.25s ease;
+            background: rgba(0, 255, 255, 0.03);
+            box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.1);
+            color: #00ffff;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-shadow: 0 0 5px #00ffff;
+            transition: all 0.2s ease;
         }
+
         .shelf-btn:hover {
-            transform: scale(0.96);
-            background: rgba(255, 255, 255, 0.25);
-        }
-        .shelf-1tn{
-            justify-self: center;
-            display: flex;
-            justify-content: center;
-            border: 8px solid #000000;
-            background: transparent;
-            outline: none;
-            font-family: 'Snowstorm', sans-serif;
-            font-size: 54px;
-            box-shadow: 15px 15px 0px rgb(2 2 2 / 0.33);
-        }
-        button {
-          cursor: pointer;
+            transform: scale(0.95) rotate(1deg); /* Легкий перекос матрицы */
+            background: rgba(0, 255, 255, 0.15);
+            border-color: #00ff99;
+            color: #00ff99;
+            box-shadow: 0 0 15px rgba(0, 255, 153, 0.4);
+            text-shadow: 0 0 8px #00ff99;
         }
 
-        div {
-          cursor: help;
-        }
-
-        input {
-          cursor: not-allowed;
-        }
-
-        p {
-          cursor: zoom-in;
-        }
-
-        .shelf-1tn:hover {
-          border: 8px solid #2e343c;
-          color: #2e343c;
-          box-shadow: 15px 15px 0px #202020;
-        }
+        /* ССЫЛКИ И СОЦСЕТИ */
         .list-item a {
-            color: #0066cc;
+            color: #00ffff;
             text-decoration: none;
-            transition: color 0.2s ease;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-shadow: 0 0 5px #00ffff;
+            transition: all 0.2s ease;
         }
 
         .list-item a i {
-            color: #000000;
-            margin-right: 5px;
+            color: #ff0055; /* Иконки брендов светятся розовым */
+            margin-right: 8px;
+            filter: drop-shadow(0 0 5px #ff0055);
         }
 
         .list-item a:hover {
-            color: #ff0055;
-            text-decoration: underline;
+            color: #00ff99;
+            text-shadow: 0 0 10px #00ff99;
+            text-decoration: none;
         }
+
         button {
           margin: 20px;
         }
+
+        /* КНОПКА ЗАПУСКА "ОЗВУЧИТЬ" */
         .custom-btn {
-          width: 130px;
-          height: 40px;
+          width: 140px;
+          height: 45px;
           color: #fff;
-          border-radius: 5px;
+          border-radius: 0px;
           padding: 10px 25px;
-          font-family: 'Lato', sans-serif;
-          font-weight: 500;
+          font-family: 'Courier New', sans-serif;
+          font-weight: bold;
+          text-transform: uppercase;
           background: transparent;
           cursor: pointer;
           transition: all 0.3s ease;
           position: relative;
           display: inline-block;
-          box-shadow: inset 2px 2px 2px 0px rgba(255,255,255,.5),
-                      7px 7px 20px 0px rgba(0,0,0,.1),
-                      4px 4px 5px 0px rgba(0,0,0,.1);
           outline: none;
         }
+
         .btn-1 {
-          background: rgb(6,14,131);
-          background: linear-gradient(0deg, rgba(6,14,131,1) 0%, rgba(12,25,180,1) 100%);
-          border: none;
-        }
-        .btn-1:hover {
-           background: rgb(0,3,255);
-           background: linear-gradient(0deg, rgba(0,3,255,1) 0%, rgba(2,126,251,1) 100%);
+          background: #ff0055;
+          border: 2px solid #00ffff;
+          box-shadow: 4px 4px 0px #00ffff; /* Плоская жесткая кибер-тень */
+          color: #ffffff;
+          text-shadow: 0 0 5px #fff;
         }
 
+        .btn-1:hover {
+           background: #00ffff;
+           color: #000;
+           border-color: #ff0055;
+           box-shadow: -4px -4px 0px #ff0055;
+           text-shadow: none;
+        }
+
+        /* ЛЕТАЮЩИЕ ИКОНКИ СТАНОВЯТСЯ ГОЛОГРАММАМИ */
         .retro-icon {
             position: absolute;
             width: 32px;
@@ -381,57 +277,119 @@
             pointer-events: none;
             z-index: -10;
             image-rendering: pixelated;
+            /* Делаем старые иконки неоново-прозрачными синими силуэтами */
+            filter: drop-shadow(0 0 8px #00ffff) opacity(0.6) saturate(3);
         }
-                /* Контейнер для текста внутри синей плашки */
-        .texture-rectangle .text-block {
+                /* Настройки синей плашки (контейнера) */
+        .texture-rectangle {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            height: 524px;
+            margin: 30px auto;
+            box-sizing: border-box;
+            border-radius: 20px;
+            background-color: #4376dc;
+            background-size: 40px 40px;
+            box-shadow: 0 4px 20px rgba(0, 51, 153, 0.15);
+            background-image:
+                linear-gradient(to right, rgb(0 0 0 / 0.15) 4px, transparent 4px),
+                linear-gradient(to bottom, rgb(0 0 0 / 0.15) 4px, transparent 4px);
+            overflow: hidden; /* Чтобы вылетающие элементы не ломали экран при загрузке */
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Падж слева, текст справа */
+            padding: 40px;
+        }
+
+        /* Позиционирование Паджа */
+        .texture-rectangle .image-wrapper {
             position: absolute;
             top: 0;
-            right: 0;
-            width: 45%; /* Занимает правую половину плашки */
+            left: 0;
+            width: 50%; /* Занимает левую половину */
             height: 100%;
-            box-sizing: border-box;
-            padding: 40px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: smoothFlyIn 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        .texture-rectangle img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        .texture-rectangle .img-base { position: relative; z-index: 1; }
+        .texture-rectangle .img-hover { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2; opacity: 0; }
+        .texture-rectangle:hover .img-hover { opacity: 1; }
+        .texture-rectangle:hover .img-base { opacity: 0; }
+
+        /* БЛОК С ТЕКСТОМ (Вылетает справа налево) */
+        .texture-rectangle .text-block {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 50%; /* Занимает правую половину */
+            height: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            align-items: flex-end;
+            justify-content: space-between; /* Большой текст вверх, маленький вниз */
+            align-items: flex-end; /* Выравнивание текста по правому краю */
+            padding: 60px 40px; /* Отступы от краев синей плашки */
+            box-sizing: border-box;
             z-index: 5;
-
-
-            animation: smoothFlyInRight 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            animation: textFlyIn 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
-
-        .text-large {
+        /* Большой текст (Справа-Сверху) с кибер-подсветкой */
+        .cyber-title {
             margin: 0;
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 900;
-            color: #ffffff;
+            color: #00ffcc; /* Неоновый бирюзовый */
+            text-shadow: 0 0 10px #00ffcc, 0 0 20px #4376dc;
+            font-family: 'Courier New', monospace;
             text-align: right;
             text-transform: uppercase;
-            font-family: monospace;
+            letter-spacing: 2px;
         }
 
-
-        .text-small {
+        /* Маленький текст (Справа-Внизу) */
+        .cyber-subtitle {
             margin: 0;
             font-size: 1.1rem;
-            font-weight: normal;
-            color: #ffffff;
-            text-align: right;
+            color: #ff0077; /* Неоновый розовый */
+            text-shadow: 0 0 8px #ff0077;
             font-family: monospace;
-            max-width: 90%;
+            text-align: right;
+            max-width: 320px; /* Чтобы красиво переносился по строкам */
+            line-height: 1.4;
         }
 
-        /* Анимация для вылета текста справа налево */
-        @keyframes smoothFlyInRight {
+        /* АНИМАЦИИ ВЫЛЕТА */
+        /* Падж летит слева направо */
+        @keyframes smoothFlyIn {
             from {
-                transform: translate(100vw, 0); /* Вылетает из-за правого края экрана */
+                transform: translate(-100vw, 0);
                 opacity: 0;
             }
             to {
-                transform: translate(0, 0); /* Встает ровно на свое место */
+                transform: translate(20px, 0); /* Аккуратно встает у левого края */
                 opacity: 1;
             }
         }
 
+        /* Текст летит справа налево навстречу Паджу */
+        @keyframes textFlyIn {
+            from {
+                transform: translate(100vw, 0);
+                opacity: 0;
+            }
+            to {
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+        }
