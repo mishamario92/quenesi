@@ -317,11 +317,10 @@
         const btn = document.getElementById('button');
         const formStatus = document.getElementById('form-status');
 
-
-
+        const sleep = ms => new Promise(r => setTimeout(r, ms));
 
         document.getElementById('form')
-            .addEventListener('submit', function (event) {
+            .addEventListener('submit', async function (event) {
                 event.preventDefault();
 
                 const lastSend = localStorage.getItem('form_last_send');
@@ -335,43 +334,59 @@
                     return;
                 }
 
-
-                const captchaResponse = grecaptcha.getResponse();
-
-                if (captchaResponse.length === 0) {
+                if (typeof grecaptcha !== 'undefined') {
+                    const captchaResponse = grecaptcha.getResponse();
+                    if (captchaResponse.length === 0) {
+                        if (formStatus) {
+                            formStatus.style.display = 'block';
+                            formStatus.style.color = 'red';
+                            formStatus.innerText = 'Пожалуйста, отметьте галочку "Я не робот"!';
+                        }
+                        return;
+                    }
+                } else {
                     if (formStatus) {
                         formStatus.style.display = 'block';
                         formStatus.style.color = 'red';
-                        formStatus.innerText = 'Пожалуйста, отметьте галочку "Я не робот"!';
+                        formStatus.innerText = 'Ошибка: капча от Google не загрузилась на страницу. Перезагрузите сайт.';
                     }
                     return;
                 }
 
+                const formElement = this;
 
-                btn.value = 'Отправка...';
+                btn.disabled = true;
+                btn.value = 'Ожидание...';
 
                 if (formStatus) {
                     formStatus.style.display = 'block';
                     formStatus.style.color = 'black';
+                    formStatus.innerText = 'Пожалуйста, подождите некоторое время...';
+                }
+
+                await sleep(30000);
+
+                btn.value = 'Отправка...';
+                if (formStatus) {
                     formStatus.innerText = 'Отправка...';
                 }
 
                 const serviceID = 'service_botyk3h';
                 const templateID = 'template_w1k7ku4';
 
-                emailjs.sendForm(serviceID, templateID, this)
+                emailjs.sendForm(serviceID, templateID, formElement)
                     .then(() => {
+                        btn.disabled = false;
                         btn.value = 'Озвучить';
                         if (formStatus) {
                             formStatus.style.color = 'green';
                             formStatus.innerText = 'Успешно доставлено';
                             grecaptcha.reset();
                         }
-
                         localStorage.setItem('form_last_send', Date.now());
-
-                        this.reset();
+                        formElement.reset();
                     }, (err) => {
+                        btn.disabled = false;
                         btn.value = 'Озвучить';
                         if (formStatus) {
                             formStatus.style.color = 'red';
