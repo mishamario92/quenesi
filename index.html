@@ -284,15 +284,11 @@
     </script>
     <div class="feedback-box"
          style="position: relative; z-index: 20; background: #c0c0c0; border: 2px solid #fff; padding: 15px; width: 300px; box-shadow: 2px 2px 5px #000;">
-        <div style="background: #000080; color: #fff; padding: 3px; font-weight: bold; margin-bottom: 10px;">Книга жалоб
-            и предложений
-        </div>
-    <div class="feedback-box"
-         style="position: relative; z-index: 20; background: #c0c0c0; border: 2px solid #fff; padding: 15px; width: 300px; box-shadow: 2px 2px 5px #000;">
         <div style="background: #000080; color: #fff; padding: 3px; font-weight: bold; margin-bottom: 10px;">
             Книга жалоб и предложений
         </div>
 
+        <!-- Подключаем скрипт Google reCAPTCHA -->
         <script src="https://google.com" async defer></script>
 
         <form id="form">
@@ -310,7 +306,7 @@
         <div id="form-status" style="margin-top: 10px; font-weight: bold; display: none;"></div>
     </div>
 
-    <!-- 2. ИСПРАВЛЕНО: Вместо пустой ссылки jsdelivr.net подключена правильная библиотека EmailJS -->
+    <!-- Подключаем библиотеку EmailJS -->
     <script type="text/javascript" src="https://jsdelivr.net"></script>
 
     <script type="text/javascript">
@@ -344,7 +340,7 @@
                 if (captchaResponse.length === 0) {
                     if (formStatus) {
                         formStatus.style.display = 'block';
-                        gformStatus.style.color = 'red';
+                        formStatus.style.color = 'red'; /* ИСПРАВЛЕНО: убрали лишнюю букву g */
                         formStatus.innerText = 'Пожалуйста, отметьте галочку "Я не робот"!';
                     }
                     return;
@@ -399,7 +395,7 @@
             const match = btn.getAttribute('onclick').match(/href=['"]([^'"]+)['"]/);
             if (!match) return;
 
-            const url = match[1];
+            const url = match;
 
             if (url.startsWith('http://') || url.startsWith('https://')) {
                 try {
@@ -419,10 +415,5 @@
         });
     });
     </script>
-</body>
-</html>
-
-
-
 </body>
 </html>
