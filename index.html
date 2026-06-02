@@ -11,7 +11,7 @@
 
 </head>
 <body>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
     <div id="playerStatus" class="music-player-status" style="position: fixed; top: 80px; left: 50%; transform: translateX(-50%); padding: 5px 15px; font-size: 14px; z-index: 1100; display: none; background: #fff; color: #000; border: 2px solid #000;">
         Сейчас играет: <span id="trackName">Ничего</span>
     </div>
@@ -289,9 +289,7 @@
         <div style="background: #000080; color: #fff; padding: 3px; font-weight: bold; margin-bottom: 10px;">
             Книга жалоб и предложений
         </div>
-
-        <script src="https://google.com" async defer></script>
-
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <form id="form">
             <label style="display:block; margin-bottom: 5px;">Ваше имя/ник:</label>
             <input type="text" name="name" required style="width: 100%; margin-bottom: 10px;"/>
@@ -321,7 +319,6 @@
 
 
 
-        document.getElementById('captcha-label').innerText = `Анти-бот проверка: сколько будет ${num1} + ${num2}?`;
 
         document.getElementById('form')
             .addEventListener('submit', function (event) {
