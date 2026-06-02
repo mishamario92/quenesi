@@ -8,8 +8,10 @@
 
     <link id="theme-style" rel="stylesheet" href="style.css">
     <link rel="icon" href="иконка.png" sizes="any">
+
 </head>
 <body>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <div id="playerStatus" class="music-player-status" style="position: fixed; top: 80px; left: 50%; transform: translateX(-50%); padding: 5px 15px; font-size: 14px; z-index: 1100; display: none; background: #fff; color: #000; border: 2px solid #000;">
         Сейчас играет: <span id="trackName">Ничего</span>
     </div>
@@ -287,8 +289,7 @@
         <div style="background: #000080; color: #fff; padding: 3px; font-weight: bold; margin-bottom: 10px;">
             Книга жалоб и предложений
         </div>
-        <script type="text/javascript" src="https://jsdelivr.net"></script>
-        <!-- Подключаем скрипт Google reCAPTCHA -->
+
         <script src="https://google.com" async defer></script>
 
         <form id="form">
@@ -296,22 +297,19 @@
             <input type="text" name="name" required style="width: 100%; margin-bottom: 10px;"/>
 
             <label style="display:block; margin-bottom: 5px;">Суть жалобы или идеи:</label>
-            <textarea name="message" required style="width: 100%; height: 80px; margin-bottom: 10px; resize: none;"></textarea>
+            <textarea name="message" required
+                      style="width: 100%; height: 80px; margin-bottom: 10px; resize: none;"></textarea>
 
-            <!-- Блок капчи с твоим ключом сайта -->
-            <div class="g-recaptcha" data-sitekey="6Lce-ggtAAAAAMcr0G0lJ0LJ7Xoe6qYzG2SCOu90" style="margin-bottom: 15px;"></div>
+            <div class="g-recaptcha" data-sitekey="6Lce-ggtAAAAAMcr0G0lJ0LJ7Xoe6qYzG2SCOu90" style="margin-bottom: 15px;" ></div>
 
-            <input type="submit" id="button" value="Озвучить" class="custom-btn btn-1" style="margin-top: 20px; width: 100%; cursor: pointer;"/>
+            <input type="submit" id="button" value="Озвучить" class="custom-btn btn-1"
+                   style="margin-top: 20px; width: 100%; cursor: pointer;"/>
+
         </form>
         <div id="form-status" style="margin-top: 10px; font-weight: bold; display: none;"></div>
     </div>
 
-
-
-    <script type="text/javascript">
-        // Инициализация EmailJS
-        emailjs.init('z_xwGDmKpyyFor9JT');
-    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
     <script type="text/javascript">
         emailjs.init('z_xwGDmKpyyFor9JT');
@@ -321,9 +319,37 @@
         const btn = document.getElementById('button');
         const formStatus = document.getElementById('form-status');
 
+
+
+        document.getElementById('captcha-label').innerText = `Анти-бот проверка: сколько будет ${num1} + ${num2}?`;
+
         document.getElementById('form')
             .addEventListener('submit', function (event) {
                 event.preventDefault();
+
+                const lastSend = localStorage.getItem('form_last_send');
+                const now = Date.now();
+                if (lastSend && (now - lastSend < 15000)) {
+                    if (formStatus) {
+                        formStatus.style.display = 'block';
+                        formStatus.style.color = 'red';
+                        formStatus.innerText = 'Пожалуйста, подождите 15 секунд перед следующей отправкой!';
+                    }
+                    return;
+                }
+
+
+                const captchaResponse = grecaptcha.getResponse();
+
+                if (captchaResponse.length === 0) {
+                    if (formStatus) {
+                        formStatus.style.display = 'block';
+                        formStatus.style.color = 'red';
+                        formStatus.innerText = 'Пожалуйста, отметьте галочку "Я не робот"!';
+                    }
+                    return;
+                }
+
 
                 btn.value = 'Отправка...';
 
@@ -332,7 +358,6 @@
                     formStatus.style.color = 'black';
                     formStatus.innerText = 'Отправка...';
                 }
-
 
                 const serviceID = 'service_botyk3h';
                 const templateID = 'template_w1k7ku4';
@@ -343,18 +368,24 @@
                         if (formStatus) {
                             formStatus.style.color = 'green';
                             formStatus.innerText = 'Успешно доставлено';
+                            grecaptcha.reset();
                         }
+
+                        localStorage.setItem('form_last_send', Date.now());
+
                         this.reset();
                     }, (err) => {
                         btn.value = 'Озвучить';
                         if (formStatus) {
                             formStatus.style.color = 'red';
                             formStatus.innerText = 'Ошибка при отправке.';
+                            grecaptcha.reset();
                         }
                         alert(JSON.stringify(err));
                     });
             });
     </script>
+
 
 
 
