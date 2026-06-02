@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/95css/css/95css.min.css" />
+    <style>
+        body {
+            padding: var(--spacing-10);
+        }
+        .slot {
+            background-color: var(--color-white);
+            padding: 40px;
+            box-shadow: var(--shadow-inner-3);
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">95CSS</a>
+        <nav>
+            <a href="index.html" class="is-active">Home</a>
+            <a href="grid.html">Grid</a>
+            <a href="dimensions.html">Dimensions</a>
+            <a href="spacing.html">Spacing</a>
+        </nav>
+    </header>
+
+    <dialog open class="w-full is-xl">
+        <div class="dialog-header">
+            <h2>Buttons</h2>
+        </div>
+        <div class="dialog-body">
+            <div class="toolbar">
+                <button>Default button</button>
+                <button class="is-highlighted">Highlighted button</button>
+                <button class="is-focused">Focused button</button>
+                <button class="is-active">Active button</button>
+                <button disabled>Disabled button</button>
+            </div>
+        </div>
+    </dialog>
+    <br>
+    <dialog open class="w-full is-xl">
+        <div class="dialog-header">
+            <h2>Toolbar and button group</h2>
+        </div>
+        <div class="dialog-body">
+            <div class="toolbar">
+                <button>Toolbar button 1</button>
+                <button>Toolbar button 2</button>
+                <button>Toolbar button 3</button>
+                <div class="btn-group">
+                    <button>btn-group 1</button>
+                    <button>btn-group 2</button>
+                    <button>btn-group 3</button>
+                </div>
+            </div>
+        </div>
+    </dialog>
+    <br>
+    <dialog open class="w-full is-xl">
+        <div class="dialog-header">
+            <h2>Tabs</h2>
+        </div>
+        <div class="dialog-body">
+            <div class="tabs" role="tablist" style="margin-bottom: 40px;">
+                <button
+                    id="tab-1"
+                    type="button"
+                    class="tab"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="tabpanel-1"
+                    tabindex="-1"
+                >
+                    Tab 1
+                </button>
+                <button
+                    id="tab-2"
+                    type="button"
+                    class="tab"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="tabpanel-2"
+                    tabindex="-1"
+                >
+                    Long tab text
+                </button>
+                <button
+                    id="tab-3"
+                    type="button"
+                    class="tab"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="tabpanel-3"
+                    tabindex="-1"
+                >
+                    Tab 3
+                </button>
+            </div>
+            <div class="tabs" role="tablist">
+                <button
+                    id="tab-1"
+                    type="button"
+                    class="tab"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="tabpanel-1"
+                    tabindex="-1"
+                >
+                    Tab 1
+                </button>
+                <button
+                    id="tab-2"
+                    type="button"
+                    class="tab is-active"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="tabpanel-2"
+                    tabindex="-1"
+                >
+                    Active tab
+                </button>
+                <button
+                    id="tab-3"
+                    type="button"
+                    class="tab"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="tabpanel-3"
+                    tabindex="-1"
+                >
+                    Tab 3
+                </button>
+            </div>
+        </div>
+    </dialog>
+    <br>
+    <dialog open class="w-full is-xl">
+        <div class="dialog-header">
+            <h2>Inputs</h2>
+        </div>
+        <div class="dialog-body">
+            <div class="field-group">
+                <div class="input-group">
+                    <label for="first_name">First name</label>
+                    <input type="text">
+                </div>
+        
+                <div class="input-group">
+                    <label for="first_name">Email</label>
+                    <input type="text" disabled value="christopher.johnson@gmail.com">
+                </div>
+
+                <div class="input-group">
+                    <label for="select">Select</label>
+                    <select name="select" id="select">
+                        <option value="">Default option</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                    </select>
+                </div>
+                
+                <fieldset>
+                    <legend>Checkboxes</legend>
+                    <div class="input-group">
+                        <label for="checkbox" class="checkbox">
+                            <input type="checkbox" name="checkbox" id="checkbox">
+                            Checkbox
+                        </label>
+                    </div>
+                    <div class="input-group">
+                        <label for="checkbox_checked" class="checkbox">
+                            <input type="checkbox" name="checkbox_checked" id="checkbox_checked" checked>
+                            Checkbox - checked
+                        </label>
+                    </div>
+                    <div class="input-group">
+                        <label for="checkbox_disabled" class="checkbox">
+                            <input type="checkbox" name="checkbox_disabled" id="checkbox_disabled" disabled>
+                            Disabled checkbox
+                        </label>
+                    </div>
+                    <div class="input-group">
+                        <label for="checkbox_disabled_checked" class="checkbox">
+                            <input type="checkbox" name="checkbox_disabled_checked" id="checkbox_disabled_checked" disabled checked>
+                            Disabled checkbox - checked
+                        </label>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Radios</legend>
+                    <div class="input-group">
+                        <label for="radio" class="radio">
+                            <input type="radio" name="radio" id="radio">
+                            Radio
+                        </label>
+                    </div>
+                    <div class="input-group">
+                        <label for="radio_checked" class="radio">
+                            <input type="radio" name="radio" id="radio_checked" checked>
+                            Radio - checked
+                        </label>
+                    </div>
+                    <div class="input-group">
+                        <label for="radio_disabled" class="radio">
+                            <input type="radio" name="radio_disabled" id="radio_disabled" disabled>
+                            Disabled radio
+                        </label>
+                    </div>
+                    <div class="input-group">
+                        <label for="radio_disabled_checked" class="radio">
+                            <input type="radio" name="checkbox_checkbox_checked" id="radio_disabled_checked" disabled checked>
+                            Disabled radio - checked
+                        </label>
+                    </div>
+                </fieldset>
+
+                <div class="input-group">
+                    <label for="select_disabled">Select disabled</label>
+                    <select name="select_disabled" id="select_disabled" disabled>
+                        <option value="">Default option</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="select">Select</label>
+                    <select name="select" id="select" multiple>
+                        <option value="">Default option</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                    </select>
+                </div>
+    
+                <div class="input-group">
+                    <label for="color">Color</label>
+                    <input type="color" name="color" id="color">
+                </div>
+                <div class="input-group">
+                    <label for="color_disabled">Color disabled</label>
+                    <input type="color" disabled name="color_disabled" id="color_disabled">
+                </div>
+
+                <div class="input-group">
+                    <label for="number">Number</label>
+                    <input type="number" name="number" id="number">
+                </div>
+
+                <div class="input-group">
+                    <label for="range">Range</label>
+                    <input type="range" name="range" id="range">
+                </div>
+
+                <fieldset>
+                    <legend>Fieldset</legend>
+                    <div style="display:flex;flex-direction:column;gap:24px">
+                        <div class="input-group">
+                            <label for="fieldset-1">First name</label>
+                            <input type="text">
+                        </div>
+                        <div class="input-group">
+                            <label for="fieldset-2">First name</label>
+                            <input type="text">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="input-group">
+                    <label for="">Progress bar</label>
+                    <progress value="0.5"></progress>
+                </div>
+            </div>
+            <br>
+            <hr>
+            <br>
+            <div class="field-group">
+                <div class="input-group is-horizontal">
+                    <label for="first_name">First name</label>
+                    <input type="text" value="Christopher">
+                </div>
+            </div>
+        </div>
+    </dialog>
+    <br>
+    <dialog open class="is-sm">
+        <div class="dialog-header">
+            <h2>Dialog is-sm</h2>
+        </div>
+        <div class="dialog-body">
+            <div class="slot">
+                <p>Slot</p>
+            </div>
+        </div>
+    </dialog>
+    <br>
+    <dialog open>
+        <div class="dialog-header">
+            <h2>Dialog is-md (default)</h2>
+        </div>
+        <div class="dialog-body">
+            <div class="slot">
+                <p>Slot</p>
+            </div>
+        </div>
+    </dialog>
+    <br>
+    <dialog open class="is-lg">
+        <div class="dialog-header">
+            <h2>Dialog is-lg</h2>
+        </div>
+        <div class="dialog-body">
+            <div class="slot">
+                <p>Slot</p>
+            </div>
+        </div>
+    </dialog>
+    <br>
+    <dialog open class="is-xl">
+        <div class="dialog-header">
+            <h2>Dialog is-xl</h2>
+        </div>
+        <div class="dialog-body">
+            <div class="slot">
+                <p>Slot</p>
+            </div>
+        </div>
+    </dialog>
+</body>
+</html>
