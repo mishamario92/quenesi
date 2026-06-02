@@ -308,44 +308,76 @@
         emailjs.init('z_xwGDmKpyyFor9JT');
     </script>
 
-    <script type="text/javascript">
-        const btn = document.getElementById('button');
-        const formStatus = document.getElementById('form-status');
+   <script type="text/javascript" src="https://jsdelivr.net"></script>
+<script type="text/javascript">
+    const _0x4a = {
+        i: () => atob('el94d0dEbUtweXlGb3I5SlQ='), 
+        s: () => atob('c2VydmljZV9ib3R5azNo'),   
+        t: () => atob('dGVtcGxhdGVfdzlrN2t1NA==')
+    };
 
-        document.getElementById('form')
-            .addEventListener('submit', function (event) {
-                event.preventDefault();
+    const btn = document.getElementById('button');
+    const formStatus = document.getElementById('form-status');
 
-                btn.value = 'Отправка...';
+    document.getElementById('form').addEventListener('submit', function (event) {
+        event.preventDefault();
 
+        const lastSend = localStorage.getItem('form_last_send');
+        const now = Date.now();
+        if (lastSend && (now - lastSend < 15000)) {
+            if (formStatus) {
+                formStatus.style.display = 'block';
+                formStatus.style.color = 'red';
+                formStatus.innerText = 'Пожалуйста, подождите 15 секунд перед следующей отправкой!';
+            }
+            return;
+        }
+
+        if (window.location.hostname !== 'quenesi-game.pages.dev' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+            alert('Ошибка безопасности!');
+            return;
+        }
+
+        if (typeof emailjs !== 'undefined') {
+            emailjs.init(_0x4a.i());
+        } else {
+            if (formStatus) {
+                formStatus.style.color = 'red';
+                formStatus.innerText = 'Ошибка: библиотека EmailJS не загрузилась.';
+            }
+            return;
+        }
+
+        btn.value = 'Отправка...';
+
+        if (formStatus) {
+            formStatus.style.display = 'block';
+            formStatus.style.color = 'black';
+            formStatus.innerText = 'Отправка...';
+        }
+
+        const sID = _0x4a.s();
+        const tID = _0x4a.t();
+
+        emailjs.sendForm(sID, tID, this)
+            .then(() => {
+                btn.value = 'Озвучить';
                 if (formStatus) {
-                    formStatus.style.display = 'block';
-                    formStatus.style.color = 'black';
-                    formStatus.innerText = 'Отправка...';
+                    formStatus.style.color = 'green';
+                    formStatus.innerText = 'Успешно доставлено';
                 }
-
-
-                const serviceID = 'service_botyk3h';
-                const templateID = 'template_w1k7ku4';
-
-                emailjs.sendForm(serviceID, templateID, this)
-                    .then(() => {
-                        btn.value = 'Озвучить';
-                        if (formStatus) {
-                            formStatus.style.color = 'green';
-                            formStatus.innerText = 'Успешно доставлено';
-                        }
-                        this.reset();
-                    }, (err) => {
-                        btn.value = 'Озвучить';
-                        if (formStatus) {
-                            formStatus.style.color = 'red';
-                            formStatus.innerText = 'Ошибка при отправке.';
-                        }
-                        alert(JSON.stringify(err));
-                    });
+                localStorage.setItem('form_last_send', Date.now());
+                this.reset();
+            }, (err) => {
+                btn.value = 'Озвучить';
+                if (formStatus) {
+                    formStatus.style.color = 'red';
+                    formStatus.innerText = 'Ошибка при отправке.';
+                }
+                console.error('EmailJS Error:', err);
             });
-    </script>
+    });
+</script>
 <script>
 window.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.shelf-btn .auto-icon').forEach(img => {
