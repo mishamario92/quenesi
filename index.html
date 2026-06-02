@@ -313,26 +313,28 @@
         emailjs.init('z_xwGDmKpyyFor9JT');
     </script>
 
-    <script type="text/javascript">
-        const btn = document.getElementById('button');
-        const formStatus = document.getElementById('form-status');
+<script type="text/javascript">
+    const btn = document.getElementById('button');
+    const formStatus = document.getElementById('form-status');
 
-        document.getElementById('form').addEventListener('submit', function (event) {
-            event.preventDefault();
+    document.getElementById('form').addEventListener('submit', function (event) {
+        // СТОП! Отменяем стандартную перезагрузку страницы браузером
+        event.preventDefault();
 
-            // 1. АНТИСПАМ (Ограничение на отправку раз в 15 секунд)
-            const lastSend = localStorage.getItem('form_last_send');
-            const now = Date.now();
-            if (lastSend && (now - lastSend < 15000)) {
-                if (formStatus) {
-                    formStatus.style.display = 'block';
-                    formStatus.style.color = 'red';
-                    formStatus.innerText = 'Пожалуйста, подождите 15 секунд перед следующей отправкой!';
-                }
-                return;
+        // 1. АНТИСПАМ (Ограничение раз в 15 секунд)
+        const lastSend = localStorage.getItem('form_last_send');
+        const now = Date.now();
+        if (lastSend && (now - lastSend < 15000)) {
+            if (formStatus) {
+                formStatus.style.display = 'block';
+                formStatus.style.color = 'red';
+                formStatus.innerText = 'Пожалуйста, подождите 15 секунд!';
             }
+            return;
+        }
 
-            // 2. ПРОВЕРКА КАПЧИ GOOGLE БРАУЗЕРОМ
+        // 2. ПРОВЕРКА ГАЛОЧКИ GOOGLE RECAPTCHA (Добавлена строгая проверка)
+        if (typeof grecaptcha !== 'undefined') {
             const captchaResponse = grecaptcha.getResponse();
             if (captchaResponse.length === 0) {
                 if (formStatus) {
@@ -342,41 +344,49 @@
                 }
                 return;
             }
+        } else {
+            console.error('reCAPTCHA библиотека не загружена');
+            return;
+        }
 
-            btn.value = 'Отправка...';
+        // Если капча пройдена, меняем текст кнопки и шлем письмо
+        btn.value = 'Отправка...';
 
-            if (formStatus) {
-                formStatus.style.display = 'block';
-                formStatus.style.color = 'black';
-                formStatus.innerText = 'Отправка...';
-            }
+        if (formStatus) {
+            formStatus.style.display = 'block';
+            formStatus.style.color = 'black';
+            formStatus.innerText = 'Отправка...';
+        }
 
-            const serviceID = 'service_botyk3h';
-            const templateID = 'template_w1k7ku4';
+        const serviceID = 'service_botyk3h';
+        const templateID = 'template_w1k7ku4';
 
-            emailjs.sendForm(serviceID, templateID, this)
-                .then(() => {
-                    btn.value = 'Озвучить';
-                    if (formStatus) {
-                        formStatus.style.color = 'green';
-                        formStatus.innerText = 'Успешно доставлено';
-                    }
+        // Отправляем данные формы в EmailJS
+        emailjs.sendForm(serviceID, templateID, this)
+            .then(() => {
+                btn.value = 'Озвучить';
+                if (formStatus) {
+                    formStatus.style.color = 'green';
+                    formStatus.innerText = 'Успешно доставлено';
+                }
 
-                    localStorage.setItem('form_last_send', Date.now());
-                    this.reset();
+                // Запоминаем время для антиспама
+                localStorage.setItem('form_last_send', Date.now());
+                this.reset();
 
-                    // Сбрасываем галочку капчи после успешной отправки
-                    grecaptcha.reset();
-                }, (err) => {
-                    btn.value = 'Озвучить';
-                    if (formStatus) {
-                        formStatus.style.color = 'red';
-                        formStatus.innerText = 'Ошибка при отправке.';
-                    }
-                    alert(JSON.stringify(err));
-                });
-        });
-    </script>
+                // Сбрасываем галочку капчи, чтобы для нового письма её нужно было нажать снова
+                grecaptcha.reset();
+            }, (err) => {
+                btn.value = 'Озвучить';
+                if (formStatus) {
+                    formStatus.style.color = 'red';
+                    formStatus.innerText = 'Ошибка при отправке.';
+                }
+                alert(JSON.stringify(err));
+            });
+    });
+</script>
+
 <script>
 window.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.shelf-btn .auto-icon').forEach(img => {
