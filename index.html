@@ -301,7 +301,7 @@
             <div class="g-recaptcha" data-sitekey="6Lce-ggtAAAAAMcr0G0lJ0LJ7Xoe6qYzG2SCOu90" style="margin-bottom: 15px;" ></div>
 
             <input type="submit" id="button" value="Озвучить" class="custom-btn btn-1"
-                   style="margin-top: 20px; width: 100%; cursor: pointer;"/>
+                   style="margin-top: 20px; width: 100%; cursor: pointer; " disabled/>
 
         </form>
         <div id="form-status" style="margin-top: 10px; font-weight: bold; display: none;"></div>
@@ -311,91 +311,88 @@
 
     <script type="text/javascript">
         emailjs.init('z_xwGDmKpyyFor9JT');
+        const submitBtn = document.getElementById('button');
+        if (submitBtn) {
+            submitBtn.removeAttribute('disabled');
+        }
     </script>
 
-    <script type="text/javascript">
-        const btn = document.getElementById('button');
-        const formStatus = document.getElementById('form-status');
+<script type="text/javascript">
+const btn = document.getElementById('button');
+const formStatus = document.getElementById('form-status');
 
-        const sleep = ms => new Promise(r => setTimeout(r, ms));
+document.getElementById('form')
+    .addEventListener('submit', async function (event) {
+        event.preventDefault();
 
-        document.getElementById('form')
-            .addEventListener('submit', async function (event) {
-                event.preventDefault();
+        const lastSend = localStorage.getItem('form_last_send');
+        const now = Date.now();
+        if (lastSend && (now - lastSend < 15000)) {
+            if (formStatus) {
+                formStatus.style.display = 'block';
+                formStatus.style.color = 'red';
+                formStatus.innerText = 'Пожалуйста, подождите 15 секунд перед следующей отправкой!';
+            }
+            return;
+        }
 
-                const lastSend = localStorage.getItem('form_last_send');
-                const now = Date.now();
-                if (lastSend && (now - lastSend < 15000)) {
-                    if (formStatus) {
-                        formStatus.style.display = 'block';
-                        formStatus.style.color = 'red';
-                        formStatus.innerText = 'Пожалуйста, подождите 15 секунд перед следующей отправкой!';
-                    }
-                    return;
-                }
-
-                if (typeof grecaptcha !== 'undefined') {
-                    const captchaResponse = grecaptcha.getResponse();
-                    if (captchaResponse.length === 0) {
-                        if (formStatus) {
-                            formStatus.style.display = 'block';
-                            formStatus.style.color = 'red';
-                            formStatus.innerText = 'Пожалуйста, отметьте галочку "Я не робот"!';
-                        }
-                        return;
-                    }
-                } else {
-                    if (formStatus) {
-                        formStatus.style.display = 'block';
-                        formStatus.style.color = 'red';
-                        formStatus.innerText = 'Ошибка: капча от Google не загрузилась на страницу. Перезагрузите сайт.';
-                    }
-                    return;
-                }
-
-                const formElement = this;
-
-                btn.disabled = true;
-                btn.value = 'Ожидание...';
-
+        if (typeof grecaptcha !== 'undefined') {
+            const captchaResponse = grecaptcha.getResponse();
+            if (captchaResponse.length === 0) {
                 if (formStatus) {
                     formStatus.style.display = 'block';
-                    formStatus.style.color = 'black';
-                    formStatus.innerText = 'Пожалуйста, подождите некоторое время...';
+                    formStatus.style.color = 'red';
+                    formStatus.innerText = 'Пожалуйста, отметьте галочку "Я не робот"!';
                 }
+                return;
+            }
+        } else {
+            if (formStatus) {
+                formStatus.style.display = 'block';
+                formStatus.style.color = 'red';
+                formStatus.innerText = 'Ошибка: капча от Google не загрузилась на страницу. Перезагрузите сайт.';
+            }
+            return;
+        }
 
-                await sleep(30000);
+        const formElement = this;
 
-                btn.value = 'Отправка...';
-                if (formStatus) {
-                    formStatus.innerText = 'Отправка...';
-                }
+        btn.disabled = true;
+        btn.value = 'Отправка...';
+        if (formStatus) {
+            formStatus.style.display = 'block';
+            formStatus.style.color = 'black';
+            formStatus.innerText = 'Отправка...';
+        }
 
-                const serviceID = 'service_botyk3h';
-                const templateID = 'template_w1k7ku4';
+        const serviceID = 'service_botyk3h';
+        const templateID = 'template_w1k7ku4';
 
-                emailjs.sendForm(serviceID, templateID, formElement)
-                    .then(() => {
-                        btn.disabled = false;
-                        btn.value = 'Озвучить';
-                        if (formStatus) {
-                            formStatus.style.color = 'green';
-                            formStatus.innerText = 'Успешно доставлено';
-                            grecaptcha.reset();
-                        }
-                        localStorage.setItem('form_last_send', Date.now());
-                        formElement.reset();
-                    }, (err) => {
-                        btn.disabled = false;
-                        btn.value = 'Озвучить';
-                        if (formStatus) {
-                            formStatus.style.color = 'red';
-                            formStatus.innerText = 'Ошибка при отправке.';
-                            grecaptcha.reset();
-                        }
-                        alert(JSON.stringify(err));
-                    });
-            });
+        try {
+            await emailjs.sendForm(serviceID, templateID, formElement);
+
+            if (formStatus) {
+                formStatus.style.color = 'green';
+                formStatus.innerText = 'Спасибо! Ваше сообщение успешно отправлено.';
+            }
+
+            localStorage.setItem('form_last_send', Date.now());
+
+            formElement.reset();
+            grecaptcha.reset();
+
+        } catch (err) {
+            if (formStatus) {
+                formStatus.style.color = 'red';
+                formStatus.innerText = 'Ошибка отправки! Попробуйте позже.';
+            }
+            console.error('EmailJS Error:', err);
+        } finally {
+            btn.disabled = false;
+            btn.value = 'Озвучить';
+        }
+    });
+
     </script>
 
 
