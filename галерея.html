@@ -227,7 +227,6 @@
         <img src="галерея/2026.3.18.jpg" alt="Картинка 14">
         <div class="image-title">03-18-2026</div>
     </div>
-    </div>
         <div class="image-box">
         <img src="галерея/1.5.2026.png" alt="Картинка 14">
         <div class="image-title">01-05-2026</div>
@@ -377,5 +376,56 @@
 
     window.addEventListener('DOMContentLoaded', generateRetroIcons);
 </script>
+<div id="viewer">
+    <img id="viewer-img">
+</div>
+
+<style>
+#viewer{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.9);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:999999;
+    cursor:pointer;
+}
+
+#viewer-img{
+    max-width:95vw;
+    max-height:95vh;
+    object-fit:contain;
+    border-radius:8px;
+}
+</style>
+
+<script>
+const viewer=document.getElementById("viewer");
+const viewerImg=document.getElementById("viewer-img");
+
+document.querySelectorAll(".image-box img").forEach(img=>{
+    img.style.cursor="zoom-in";
+
+    img.addEventListener("click",function(e){
+        e.stopPropagation();
+        viewer.style.display="flex";
+        viewerImg.src=this.src;
+        document.body.style.overflow="hidden";
+    });
+});
+
+viewer.addEventListener("click",function(){
+    viewer.style.display="none";
+    document.body.style.overflow="auto";
+});
+
+document.addEventListener("keydown",function(e){
+    if(e.key==="Escape"){
+        viewer.style.display="none";
+        document.body.style.overflow="auto";
+    }
+});
+        </script>
 </body>
 </html>
