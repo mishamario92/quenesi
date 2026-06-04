@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>quenesi/о проекте</title>
+    <link rel="icon" href="рол.png" sizes="any">
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC&family=Rubik+80s+Fade&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+     <style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "JetBrains Mono", monospace;
+    min-height: 100vh;
+    background-image: url('wave-haikei.svg');
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: cover;
+    background-color: #0b0914;
+    color: #f3f0f5;
+}
+
+    .ybutton {
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        position: fixed;
+        top: 20px;
+        left: 95%;
+        z-index: 1000;
+        cursor: pointer;
+    }
+    .ybutton img {
+        width: 80px;
+        height: auto;
+        display: block;
+        transition: transform 0.2s ease, filter 0.2s ease;
+
+    }
+
+    .ybutton:hover img {
+        transform: scale(1.15);
+        filter: brightness(1.2);
+    }
+
+    .ybutton:active img {
+        transform: scale(0.95);
+    }
+
+.glow-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 110px;
+    z-index: 10;
+    filter: drop-shadow(0 5px 25px rgba(146, 110, 174, 0.6));
+}
+
+.purpleop-box {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #926eae 0%, #63437c 100%);
+    clip-path: polygon(0 0, 100% 0, 95% 70%, 75% 100%, 25% 100%, 5% 70%);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 25px;
+    box-sizing: border-box;
+    padding-top: 25px;
+}
+.nav-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    padding: 10px 22px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.07);
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    transform: translateY(-10px);
+}
+
+.main-interface {
+    padding-top: 170px;
+    padding-bottom: 60px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+}
+
+.parent {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 40px;
+    background: rgba(22, 19, 36, 0.75);
+    padding: 45px;
+    border-radius: 24px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+.div1 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.project-icon-box {
+    background: linear-gradient(135deg, #2b2640 0%, #171424 100%);
+    width: 110px;
+    height: 110px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+#projectIcon {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.div2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.project-title {
+    font-family: "Rubik 80s Fade", system-ui;
+    font-size: 32px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+    margin: 0 0 20px 0;
+    background: linear-gradient(90deg, #ffffff 0%, #cdbfe3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.description-block {
+    font-family: "Rubik 80s Fade", system-ui;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #b9b4c7;
+    margin: 0 0 30px 0;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 4px solid #ffffff;
+}
+
+.stage-block {
+    align-self: flex-start;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #ffffff;
+    background: linear-gradient(90deg, #4576da 0%, #1d48b3 100%);
+    padding: 8px 18px;
+    border-radius: 6px;
+}
+.nav-link.active {
+    background: #ffffff;
+    color: #4a2d61;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+    transform: translateY(-2px);
+    border-color: #ffffff;
+}
+.project-link {
+    color: #6396ff;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+
+.project-link:hover {
+    color: #fd5c5c;
+}
+@media (max-width: 768px) {
+    body {
+        background-size: auto 50%;
+        background-position: center bottom;
+    }
+
+    .ybutton {
+        top: 15px;
+        left: unset;
+        right: 15px;
+    }
+    .ybutton img {
+        width: 45px;
+    }
+
+    .glow-container {
+        height: auto;
+        min-height: 120px;
+    }
+
+    .purpleop-box {
+        clip-path: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 20px 15px;
+    }
+
+    .nav-link {
+        font-size: 11px;
+        padding: 8px 16px;
+        width: 90%;
+        text-align: center;
+    }
+
+    .main-interface {
+        padding-top: 180px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .parent {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 25px 20px;
+        border-radius: 16px;
+    }
+
+    .div1 {
+        justify-content: center;
+    }
+
+    .project-icon-box {
+        width: 90px;
+        height: 90px;
+    }
+
+    #projectIcon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .project-title {
+        font-size: 22px;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .description-block {
+        font-size: 14px;
+        padding: 15px;
+        line-height: 1.6;
+    }
+
+    .stage-block {
+        align-self: center;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+
+    <img decoding="async" src="quenesi.png" id="myImage" class="wp-image-981" width="115" style="cursor: pointer; z-index: 3; margin: 20px 0 20px 30px; position: absolute;">
+
+    <button onclick="window.location.href='index.html';" class="ybutton">
+        <img src="jkl.png" alt="Назад">
+    </button>
+
+<div class="glow-container">
+    <div class="purpleop-box">
+        <a href="?project=ЕКОСЕСТЕМА КРАСНЫХ ДОМОВ" id="btn-red" class="nav-link">Экосистема Красных Домов</a>
+        <a href="?project=геимбой" id="btn-gb" class="nav-link">Геймбой: Трёхглавие</a>
+    </div>
+</div>
+
+
+    <div class="main-interface">
+        <div class="parent">
+            <div class="div1">
+                <div class="project-icon-box">
+                    <img id="projectIcon" src="" alt="Иконка">
+                </div>
+            </div>
+
+            <div class="div2">
+                <div class="project-title">
+                    Проект: <span id="projectName"></span>
+                </div>
+
+                <div class="description-block">
+                    <strong>Описание:</strong> <br>
+                    <span id="projectDesc"></span>
+                </div>
+
+                <div class="stage-block">
+                    Этап: <span id="projectStage"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+const projectsDatabase = {
+  "ЕКОСЕСТЕМА КРАСНЫХ ДОМОВ": {
+    title: "ЕКОСЕСТЕМА КРАСНЫХ ДОМОВ",
+    desc: "Интерактивная карта, отображающая доступные для аренды реальные «красные дома»." +
+        " Аренда осуществляется за внутреннюю виртуальную валюту. Игровую валюту получаешь за время в приложении и в мини-игрax. " +
+        "Сама мини-игра — это игра, где ты за 2 фракции: «Сапёра» и китайской штуки, где закрашиваешь клеточки, буду называть{<a href='?project=дяхз' class='project-link'>дяхз</a>}" +
+        " Ты за их валюту можешь взять территорию пустую и создать головоломку: если «Сапёр», то расставить мины, а если <a href='?project=дяхз' class='project-link'>дяхз</a> — чёрные квадраты. А чтобы сделать территорию ничьей, " +
+        "надо решить головоломку. Деньги получаешь от количества игр на сайтах «Сапёра» - <a href='https://minesweeper.online' target='_blank' class='project-link'>minesweeper.online</a>, а из <a href='?project=дяхз' class='project-link'>дяхз</a> - <a href='https://puzzle-nonograms.com' target='_blank' class='project-link'>puzzle-nonograms.com</a>, проведённого времени внутри приложения и побед в мини-играх.",
+    stage: "Концепт",
+    icon: "2.png",
+    buttonId: "btn-red"
+  },
+  "геимбой": {
+    title: "ТРЁХГЛАВИЕ",
+    desc: "Эта игра — это такой гибрид, вроде старых портативок Game & Watch. Ты" +
+        " играешь за Марио и Clamper, где уровни переключаются по очереди, а босы - как в Donkey Kong Junior." +
+        " Графика сделана в стиле первого Game Boy с треугольниками.",
+    stage: "Концепт",
+    icon: "2.png",
+    buttonId: "btn-gb"
+  },
+  "дяхз": {
+    title: "¯\\_(ツ)_/¯",
+    desc: "даях...знаю",
+    stage: "¯\\_(ツ)_/¯",
+    icon: "images.png",
+  }
+};
+
+    const defaultProject = {
+      title: "ты из матрици",
+      desc: "чё ты делаеш тут",
+      stage: "Техподдержка(нету)",
+      icon: "2.png",
+      buttonId: null
+    };
+
+  function initDynamicInterface() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const projectKey = urlParams.get('project');
+
+    let currentProject = (projectKey && projectsDatabase[projectKey]) ? projectsDatabase[projectKey] : defaultProject;
+
+    document.getElementById('projectName').innerText = currentProject.title;
+    document.getElementById('projectDesc').innerHTML = currentProject.desc;
+    document.getElementById('projectStage').innerText = currentProject.stage;
+
+    const iconElement = document.getElementById('projectIcon');
+    iconElement.src = currentProject.icon;
+    iconElement.alt = `Иконка ${currentProject.title}`;
+    document.querySelectorAll('.nav-link').forEach(btn => {
+          btn.classList.remove('active');
+      });
+
+      // Если у текущего проекта указан ID кнопки, добавляем ей класс подсветки
+      if (currentProject.buttonId) {
+          const activeParagraph = document.getElementById(currentProject.buttonId);
+          if (activeParagraph) {
+              activeParagraph.classList.add('active');
+          }
+      }
+
+  }
+
+  window.addEventListener('DOMContentLoaded', initDynamicInterface);
+</script>
+
+</body>
+</html>
