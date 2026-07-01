@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>quenesi.tk</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital@1&display=swap" rel="stylesheet">
+    <link rel="icon" href="иконка.png" sizes="any">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+.forum-widget {
+    position: absolute;
+    left: 10px;
+
+    width: 320px;
+    background-color: #b6b6b6;
+    border: 1px solid #a8a8a8;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    font-family: Arial, sans-serif;
+    padding-bottom: 12px;
+}
+
+.forum-widget:nth-of-type(1) {
+    top: 10px;
+}
+
+
+.forum-widget:nth-of-type(2) {
+    top: 600px;
+}
+
+.forum-widget iframe {
+    border: none;
+    background: #fff;
+    width: 100%;
+    height: 180px;
+}
+
+
+.widget-header {
+    background: linear-gradient(to bottom, #b1b1b1 0%, #979797 100%);
+    color: #272727;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 10px 14px;
+    border-bottom: 1px solid #b8b8b8;
+    text-shadow: 1px 1px 0px #a5a5a5;
+}
+
+.widget-content {
+    padding: 15px;
+}
+
+.forum-item {
+    position: relative;
+    padding: 15px;
+}
+
+
+.item-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.topic-title {
+    color: #000000;
+    font-size: 13px;
+    font-weight: bold;
+    text-decoration: none;
+}
+.topic-title:hover {
+    text-decoration: underline;
+    color: #a3ff73;
+}}
+
+.topic-date {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    font-size: 11px;
+    color: #8c8c8c;
+}
+.forum-item {
+    margin-bottom: 15px;
+    padding: 5px;
+}
+
+
+
+.topic-title {
+    color: #1a66b0;
+    font-weight: bold;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+
+
+
+.widget-footer-btn {
+    display: block;
+    width: calc(100% - 30px);
+    margin: 0 auto;
+    padding: 8px 0;
+    background: linear-gradient(to bottom, #cfcfcf 0%, #cacaca 100%);
+    border: 1px solid #9c9c9c;
+    border-radius: 4px;
+    color: #373737;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+.widget-footer-btn:hover {
+    background: linear-gradient(to bottom, #acacac 0%, #a1a1a1 100%);
+    border-color: #6e6e6e;
+    color: #1c1c1c;
+}
+        body {
+            font-family: "Lucida Grande", Arial, sans-serif;
+            font-size: 14px;
+            color: #333333;
+            background-color: #e6e6e6;
+        }
+
+        .wrapper {
+            width: 960px;
+            margin: 20px auto;
+            background: #ffffff;
+            border: 1px solid #cccccc;
+            border-radius: 8px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .header {
+            padding: 30px 20px;
+            background: #f2f2f2;
+            border-bottom: 1px solid #dddddd;
+        }
+        .header h1 {
+            font-size: 32px;
+            color: #222;
+            text-shadow: 1px 1px 2px #fff;
+        }
+        .header .slogan {
+            font-style: italic;
+            color: #777;
+        }
+
+        .nav {
+            background: linear-gradient(to bottom, #555555 0%, #222222 100%);
+            border-bottom: 3px solid #005580;
+        }
+        .nav ul {
+            list-style: none;
+        }
+        .nav ul li {
+            float: left;
+        }
+        .nav ul li a {
+            display: block;
+            padding: 12px 20px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            text-shadow: 1px 1px 1px #000;
+            border-right: 1px solid #444;
+        }
+        .nav ul li a:hover, .nav ul li a.active {
+            background: linear-gradient(to bottom, #0077b3 0%, #004466 100%);
+        }
+
+        .main-content {
+            padding: 20px;
+        }
+        .left-col {
+            float: left;
+            border: 8px solid #33b8ff;
+            border-radius: 16px;
+        }
+
+
+
+        .clearfix {
+            clear: both;
+        }
+
+        h2, h3 {
+            margin-bottom: 15px;
+            color: #005580;
+        }
+        p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+
+
+        .sidebar ul {
+            list-style-position: inside;
+            margin-bottom: 15px;
+        }
+        .sidebar ul li a {
+            color: #0077b3;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 20px;
+            background: #f2f2f2;
+            border-top: 1px solid #dddddd;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+
+        .footer a {
+          text-decoration: none;
+        }
+
+
+        .footer img {
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer img:hover {
+            opacity: 1;
+        }
+
+        .banner-wrapper {
+            display: flex;
+            justify-content: center;
+        }
+
+
+        .sidebar ul {
+            list-style-position: inside;
+            margin-bottom: 15px;
+        }
+        .sidebar ul li a {
+            color: #0077b3;
+        }
+
+    </style>
+            <div class="forum-widget">
+    <div class="widget-header">Последнее на форуме</div>
+
+    <div class="widget-content">
+
+        <div class="forum-item">
+            <div class="item-main">
+                <a href="forum-флуд.html" class="topic-title">флуд</a>
+                <span class="topic-date">20 тредов</span>
+            </div>
+        </div>
+
+        <div class="forum-item">
+            <div class="item-main">
+                <a href="forum-oценка-проектов.html" class="topic-title">оценка проектов</a>
+                <span class="topic-date">312 тредов</span>
+            </div>
+
+        </div>
+
+
+        <div class="forum-item">
+            <div class="item-main">
+                <a href="forum-разроботка-проектов.html" class="topic-title">разроботка проектов</a>
+                <span class="topic-date">100 тредов</span>
+            </div>
+        </div>
+
+    </div>
+
+    <a href="forum11.html" class="widget-footer-btn">весь форум</a>
+</div>
+
+        <div class="forum-widget">
+    <div class="widget-header">войти на ак</div>
+
+    <div class="widget-content">
+
+        <iframe src="пп.html" width="290" height="200"></iframe>
+
+    </div>
+
+    <a href="account.html" class="widget-footer-btn">твой ак</a>
+</div>
+</head>
+<body>
+
+    <div class="wrapper">
+
+        <div class="header">
+            <img src="textanim (1).gif" alt="Описание анимации" >
+            <p class="slogan">наша кладбише кода</p>
+        </div>
+
+        <div class="nav">
+            <ul>
+                <li><a href="index.html" >Главная</a></li>
+                <li><a href="news.html">Новости</a></li>
+                <li><a href="forum11.html" class="active">Форум</a></li>
+                <li><a href="account.html">Свой ак</a></li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="main-content">
+
+            <div class="left-col">
+                <br>
+                <h2>⠀Форум!</h2>
+                 <div class="container">
+                     <div class="subforum">
+    <div class="subforum-title">
+        <h1><a href="forum11.html" style="color: aliceblue;">Флуд</a></h1>
+    </div>
+
+    <br>
+    <div class="subforum-row">
+        <div class="subforum-icon subforum-column center">
+            <i class="fa fa-fire"></i>
+        </div>
+        <div class="subforum-description subforum-column">
+            <h4><a href="111ё1.html"><img src="Free-Forum-Template-main\standart_light_skin\crazy.gif">Кто во что играет сейчас?</a></h4>
+            <p>Что такое игры .</p>
+        </div>
+        <div class="subforum-stats subforum-column center">
+            <span>данные не получили</span>
+        </div>
+        <div class="subforum-info subforum-column">
+            <b><a title="сайт не мой" href="https://avotar.ru/">Пост</a></b> от <a title="сайт не мой" href="https://avotar.ru/">Ngoaaaaa</a>
+            <br>on <small>2010</small>
+        </div>
+    </div>
+
+
+    <hr class="subforum-devider">
+        <br>
+
+    <div class="subforum-row">
+        <div class="subforum-icon subforum-column center">
+            <i class="fa fa-fire"></i>
+        </div>
+        <div class="subforum-description subforum-column">
+            <h4><a href="111ё1.html"><img src="Free-Forum-Template-main\standart_light_skin\curtsey.gif">Какая клавиатура удобнее?</a></h4>
+            <p>Ну мембранка там хорошо слышен отклик </p>
+        </div>
+        <div class="subforum-stats subforum-column center">
+            <span>данные не получили</span>
+        </div>
+        <div class="subforum-info subforum-column">
+            <b><a title="сайт не мой" href="https://avotar.ru/">Пост</a></b> от <a title="сайт не мой" href="https://avotar.ru/">Admin_Roma</a>
+            <br>on <small>2010</small>
+        </div>
+    </div>
+
+
+    <hr class="subforum-devider">
+        <br>
+
+    <div class="subforum-row">
+        <div class="subforum-icon subforum-column center">
+            <i class="fa fa-fire"></i>
+        </div>
+        <div class="subforum-description subforum-column">
+            <h4><a href="111ё1.html"><img src="Free-Forum-Template-main\standart_light_skin\dance4.gif">Старые игры которые не забыть</a></h4>
+            <p>Ну не знаю все старые игры ето месево щас технологии с каждей секундой меняются</p>
+        </div>
+        <div class="subforum-stats subforum-column center">
+            <span>данные не получили</span>
+        </div>
+        <div class="subforum-info subforum-column">
+            <b><a title="сайт не мой" href="https://avotar.ru/">Пост</a></b> от <a title="сайт не мой" href="https://avotar.ru/">tttttttt-hhh</a>
+            <br>on <small>2008</small>
+        </div>
+    </div>
+
+
+    <hr class="subforum-devider">
+        <br>
+
+    <div class="subforum-row">
+        <div class="subforum-icon subforum-column center">
+            <i class="fa fa-fire"></i>
+        </div>
+        <div class="subforum-description subforum-column">
+            <h4><a href="111ё1.html">ПРИВТЕ Ваш рабочий стол на ПК</a></h4>
+            <p>(Фото)</p>
+        </div>
+        <div class="subforum-stats subforum-column center">
+            <span>данные не получили</span>
+        </div>
+        <div class="subforum-info subforum-column">
+            <b><a title="сайт не мой" href="https://avotar.ru/">Пост</a></b> от <a title="сайт не мой" href="https://avotar.ru/">NeoDev</a>
+            <br>on <small>2009</small>
+        </div>
+    </div>
+
+
+    <hr class="subforum-devider">
+
+        <br>
+    <div class="subforum-row">
+        <div class="subforum-icon subforum-column center">
+            <i class="fa fa-fire"></i>
+        </div>
+        <div class="subforum-description subforum-column">
+            <h4><a href="111ё1.html">312 Любимый мем</a></h4>
+            <p>(Фото)</p>
+        </div>
+        <div class="subforum-stats subforum-column center">
+            <span>данные не получили</span>
+        </div>
+        <div class="subforum-info subforum-column">
+            <b><a title="сайт не мой" href="https://avotar.ru/">Пост</a></b> от <a title="сайт не мой" href="https://avotar.ru/">OldGamer</a>
+            <br>on <small>2006</small>
+        </div>
+    </div>
+    <hr class="subforum-devider">
+        <br>
+
+    <div class="subforum-row">
+        <div class="subforum-icon subforum-column center">
+            <i class="fa fa-fire"></i>
+        </div>
+        <div class="subforum-description subforum-column">
+            <h4><a href="111ё1.html">312 Любимые сайты</a></h4>
+            <p><a href="https://www.newgrounds.com/">www.newgrounds.com/</a></p>
+        </div>
+        <div class="subforum-stats subforum-column center">
+            <span>данные не получили</span>
+        </div>
+        <div class="subforum-info subforum-column">
+            <b><a title="сайт не мой" href="https://avotar.ru/">Пост</a></b> от <a title="сайт не мой" href="https://avotar.ru/">Yuki</a>
+            <br>on <small>2007</small>
+        </div>
+    </div>
+
+
+    <hr class="subforum-devider">
+        <br>
+
+    <div class="subforum-row">
+        <div class="subforum-icon subforum-column center">
+            <i class="fa fa-fire"></i>
+        </div>
+        <div class="subforum-description subforum-column">
+            <h4><a href="111ё1.html">ПРИВТЕ Какие программы стоят у вас?</a></h4>
+            <p>ФОРУМ СДОХ</p>
+        </div>
+        <div class="subforum-stats subforum-column center">
+            <span>данные не получили</span>
+        </div>
+        <div class="subforum-info subforum-column">
+            <b><a title="сайт не мой" href="https://avotar.ru/">Пост</a></b> от <a title="сайт не мой" href="https://avotar.ru/">Nikita228</a>
+            <br>on <small>2007</small>
+        </div>
+    </div>
+
+
+    <hr class="subforum-devider">
+        <br>
+    <div class="subforum-row">
+        <div class="subforum-icon subforum-column center">
+            <i class="fa fa-fire"></i>
+        </div>
+        <div class="subforum-description subforum-column">
+            <h4><a href="111ё1.html">ПРИВТЕ Привет вот ссылка (ссылка удалена) там Читы на голду</a></h4>
+            <p>Ага поверим.</p>
+        </div>
+        <div class="subforum-stats subforum-column center">
+            <span>данные не получили</span>
+        </div>
+        <div class="subforum-info subforum-column">
+            <b><a title="сайт не мой" href="https://avotar.ru/">Пост</a></b> от <a title="сайт не мой" href="https://avotar.ru/">@$qwerty$@</a>
+            <br>on <small>2008</small>
+        </div>
+    </div>
+
+
+    <hr class="subforum-devider">
+        <br>
+
+    <div class="subforum-row">
+        <div class="subforum-icon subforum-column center">
+            <i class="fa fa-fire"></i>
+        </div>
+        <div class="subforum-description subforum-column">
+            <h4><a href="111ё1.html">ПРИВТЕ Музыка во время работы за ПК</a></h4>
+            <p>(Музыка)</p>
+        </div>
+        <div class="subforum-stats subforum-column center">
+            <span>данные не получили</span>
+        </div>
+        <div class="subforum-info subforum-column">
+            <b><a title="сайт не мой" href="https://avotar.ru/">Пост</a></b> от <a title="сайт не мой" href="https://avotar.ru/">Ngoaaaaa</a>
+            <br>on <small>2011</small>
+        </div>
+    </div>
+    <hr class="subforum-devider">
+        <br>
+    <div class="subforum-row">
+        <div class="subforum-icon subforum-column center">
+            <i class="fa fa-fire"></i>
+        </div>
+        <div class="subforum-description subforum-column">
+            <h4><a href="111ё1.html">312 Обои рабочего стола</a></h4>
+            <p>Кто меняет вообще обои</p>
+        </div>
+        <div class="subforum-stats subforum-column center">
+            <span>данные не получили</span>
+        </div>
+        <div class="subforum-info subforum-column">
+            <b><a title="сайт не мой" href="https://avotar.ru/">Пост</a></b> от <a title="сайт не мой" href="https://avotar.ru/">OldGamer</a>
+            <br>on <small>2013</small>
+        </div>
+    </div>
+
+
+    <hr class="subforum-devider">
+        <br>
+
+    <div class="subforum-row">
+        <div class="subforum-icon subforum-column center">
+            <i class="fa fa-fire"></i>
+        </div>
+        <div class="subforum-description subforum-column">
+            <h4><a href="111ё1.html"><img src="Free-Forum-Template-main\standart_light_skin\dirol.gif">Кто помнит Windows XP?</a></h4>
+            <p>Что я ДОСИХПОР сижу на нем недавно 8 вышла полная Параша семёрка это типа исправленная Вислу лучше не видеть </p>
+        </div>
+        <div class="subforum-stats subforum-column center">
+            <span>данные не получили</span>
+        </div>
+        <div class="subforum-info subforum-column">
+            <b><a title="сайт не мой" href="https://avotar.ru/">Пост</a></b> от <a title="сайт не мой" href="https://avotar.ru/">кокакола</a>
+            <br>on <small>2010</small>
+        </div>
+    </div>
+
+
+    <hr class="subforum-devider">
+        <br>
+    <div class="subforum-row">
+        <div class="subforum-icon subforum-column center">
+            <i class="fa fa-fire"></i>
+        </div>
+        <div class="subforum-description subforum-column">
+            <h4><a href="111ё1.html"><img src="Free-Forum-Template-main\standart_light_skin\download.gif">Разработка проектов</a></h4>
+            <p>Description Content: let's try to be cool.</p>
+        </div>
+        <div class="subforum-stats subforum-column center">
+            <span>данные не получили</span>
+        </div>
+        <div class="subforum-info subforum-column">
+            <b><a title="сайт не мой" href="https://avotar.ru/">Пост</a></b> от <a title="сайт не мой" href="https://avotar.ru/">Ngoaaaaa</a>
+            <br>on <small>2009</small>
+        </div>
+    </div>
+        <br>
+
+    <hr class="subforum-devider">
+
+
+    <div class="subforum-row">
+        <div class="subforum-icon subforum-column center">
+            <i class="fa fa-fire"></i>
+        </div>
+        <div class="subforum-description subforum-column">
+            <h4><a href="111ё1.html"><img src="Free-Forum-Template-main\standart_light_skin\english_en.gif">Сколько часов вы сидите за компьютером?</a></h4>
+            <p>5 лет в день.</p>
+        </div>
+        <div class="subforum-stats subforum-column center">
+            <span>данные не получили</span>
+        </div>
+        <div class="subforum-info subforum-column">
+            <b><a title="сайт не мой" href="https://avotar.ru/">Пост</a></b> от <a title="сайт не мой" href="https://avotar.ru/">Yuki</a>
+            <br>on <small>2007</small>
+        </div>
+    </div>
+
+        <br>
+    <hr class="subforum-devider">
+</div>
+
+    </div>
+
+            </div>
+
+            <div class="clearfix"></div>
+
+        </div>
+
+
+        <div class="footer">
+            <a href="https://skype.com">
+                <img src="skype (2).png" alt="При поддержке Skype" width="200" height="100">
+
+            </a>
+            <p>&copy; 2008-2012 OOO"quenesi".</p>
+
+            <p><strong>наша почта:</strong><a href="mailto:quenesi@nm.ru" target="_blank">quenesi@nm.ru</a></p>
+
+        </div>
+
+
+    </div>
+<div class="banner-wrapper">
+    <object class="qaz" data="banner.as" type="application/x-shockwave-flash" width="1000" height="100">
+        <p>Реклама не поддерживается вашим браузером.</p>
+    </object>
+</div>
+<!--LiveInternet counter--><a href="https://www.liveinternet.ru/click"
+target="_blank"><img src="https://counter.yadro.ru/hit?t58.13"
+alt="" title="LiveInternet"
+style="border:0" width="108" height="41"/></a><!--/LiveInternet-->
+<style>
+    .calendar-wrapper {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 1000;
+    }
+
+    .calendar-table {
+        border-collapse: collapse;
+        font-family: sans-serif;
+        background-color: white;
+    }
+
+    .calendar-table th, .calendar-table td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .highlighted {
+        background-color: #ffcc00;
+        font-weight: bold;
+    }
+</style>
+
+<div class="calendar-wrapper">
+    <table class="calendar-table">
+        <caption>Декабрь 2013</caption>
+        <tr>
+            <th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th><th>Сб</th><th>Вс</th>
+        </tr>
+        <tr>
+            <td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td>
+        </tr>
+        <tr>
+            <td>7</td><td>8</td><td>9</td><td class="highlighted">10</td><td>11</td><td>12</td><td>13</td>
+        </tr>
+        <tr>
+            <td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

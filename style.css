@@ -300,6 +300,15 @@
             font-size: 54px;
             box-shadow: 15px 15px 0px rgb(2 2 2 / 0.33);
         }
+        .shelf-2tn{
+            display: flex;
+            border: 6px solid #000000;
+            background: transparent;
+            outline: none;
+            font-family: 'Snowstorm', sans-serif;
+            font-size: 40px;
+            box-shadow: 15px 15px 0px rgb(2 2 2 / 0.33);
+        }
         button {
           cursor: pointer;
         }
@@ -316,7 +325,7 @@
           cursor: zoom-in;
         }
 
-        .shelf-1tn:hover {
+        .shelf-1tn:hover,.shelf-2tn:hover {
           border: 8px solid #2e343c;
           color: #2e343c;
           box-shadow: 15px 15px 0px #202020;
