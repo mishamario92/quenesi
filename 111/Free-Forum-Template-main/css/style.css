@@ -1,0 +1,114 @@
+@font-face {
+  font-family: 'Eno Black'; 
+
+  src: url('ttf/Eno Black.ttf') format('truetype');
+  font-weight: 900; 
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: 'Eno Black', sans-serif;
+  background-color: #eeeeee;
+}
+.nice-button {
+
+  position: fixed;
+  top: 30px;
+  right: 30px;
+
+
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px); 
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #333;
+  
+
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.08), 
+    0 4px 10px rgba(0, 0, 0, 0.05),
+    inset 0 -3px 5px rgba(0, 0, 0, 0.02); 
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+
+
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+
+.alive-img-bottom {
+
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+
+
+
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: breathe 5s ease-in-out infinite; /* Эффект дыхания */
+  z-index: 1000;
+}
+
+
+@keyframes breathe {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-12px) rotate(2deg); }
+}
+#qaz{
+	position: absolute;
+	left: 40%; 
+	top: 30% 
+}
+
+
+
+#search-result {
+    position: absolute;
+    left: 80px; 
+    top: 540px; 
+    color: black; 
+    font-size: 36px; 
+    font-family: 'Eno Black', sans-serif; 
+    font-weight: 900;
+    z-index: 10;
+}
+
+#top-input-text {
+    position: absolute;
+    left: 420px; 
+    top: 75px;   
+    color: #333;
+    font-size: 24px;
+    font-family: 'Eno Black', sans-serif;
+    font-weight: 900;
+    z-index: 20;
+}
+  #ex:hover {
+	transition: all 0.5s ease;
+    filter: brightness(0.7); 
+    transform: translateY(-2px); 
+  }
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+    box-sizing: border-box;
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="png/icon.png" type="image/png">
+</head>
+<body>
+<div style="width: 1440px; height: 2634px; position: relative; background: white; overflow: hidden">
+  <div style="width: 1440px; height: 188px; left: 0px; top: 0px; position: absolute; background: #F1F1F1"></div>
+
+  <a href="index.html">
+    <img src="png/logo.png" alt="Моя фотография" style="width: 347px; height: 347px; left: 21px; top: -83px; position: absolute" id="qaz" >
+  </a>
+
+  <form action="" method="GET">
+    <input type="text" name="username" id="top-search-input" style="width: 629px; height: 60px; left: 405px; top: 61px; position: absolute; background: white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border: 5px #EBEBEB solid; font-size: 24px; padding-left: 10px; outline: none;">
+    <button type="submit" id="ex" style="position: absolute; box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.5); left: 1045px; top: 61px; padding: 0; border: none; background: none; cursor: pointer;" >
+        <img src="png/123.png" alt="Поиск" style="height: 70px; width: auto; display: block;">
+    </button>
+  </form>
+
+  <div style="left: 57px; top: 277px; position: absolute; color: #FF0000; font-size: 40px; font-family: Inter; font-weight: 700;">Поиск</div>
+
+  <div id="results-count" style="left: 444px; top: 286px; position: absolute; color: #CCCCCC; font-size: 24px; font-family: Inter; font-weight: 700;">Результатов примерно 0</div>
+
+  <div style="width: 21px; height: 100px; left: 0px; top: 512px; position: absolute; background: #FF0000"></div>
+
+  <div id="search-result" style="left: 57px; top: 540px; position: absolute; color: black; font-size: 36px; font-family: Inter; font-weight: 700;">
+    Загрузка запроса...
+  </div>
+
+  <div id="results-container" style="width: 1440px; position: absolute; top: 640px; left: 0px;">
+    <div style="width: 100%; height: 5px; background: black;"></div>
+  </div>
+</div>
+
+<script>
+
+const txtUrl = 'https://raw.githubusercontent.com/danielmiessler/top-domains/refs/heads/main/alexa-top-1Million.txt';
+
+const urlParams = new URLSearchParams(window.location.search);
+const myQuery = urlParams.get('username');
+
+const inputField = document.getElementById('top-search-input');
+const titleField = document.getElementById('search-result');
+const container = document.getElementById('results-container');
+const countField = document.getElementById('results-count');
+
+fetch(txtUrl)
+  .then(response => response.text())
+  .then(data => {
+    const searchDatabase = data.split('\n').map(site => site.trim()).filter(site => site.length > 0);
+
+    if (myQuery && myQuery.trim() !== "") {
+      const cleanQuery = myQuery.trim().toLowerCase();
+
+      titleField.innerText = myQuery;
+      inputField.value = myQuery;
+
+      const filteredResults = searchDatabase.filter(siteUrl => {
+        return siteUrl.toLowerCase().includes(cleanQuery);
+      });
+
+      countField.innerText = `Результатов примерно ${filteredResults.length}`;
+
+      if (filteredResults.length > 0) {
+        filteredResults.forEach(siteUrl => {
+          const resultBlock = document.createElement('div');
+          resultBlock.style.height = '120px';
+          resultBlock.style.position = 'relative';
+          resultBlock.style.borderBottom = '5px solid black';
+
+          const siteName = siteUrl.split('.')[0].toUpperCase();
+          const fullUrl = siteUrl.startsWith('http') ? siteUrl : `https://${siteUrl}`;
+
+          resultBlock.innerHTML = `
+            <a href="${fullUrl}" target="_blank" class="result-link" style="left: 481px; top: 20px; position: absolute; font-size: 36px; font-family: Inter; font-weight: 700; color: #0000EE; text-decoration: underline;">${siteName}</a>
+            <div style="left: 481px; top: 70px; position: absolute; color: black; font-size: 24px; font-family: Inter; font-weight: 400;">чтото тут есть ${siteUrl}</div>
+          `;
+          container.appendChild(resultBlock);
+        });
+      } else {
+        container.innerHTML += `<div style="left: 481px; position: relative; margin-top: 40px; font-size: 24px; font-family: Inter;">бля ничего нет.</div>`;
+      }
+
+    } else {
+      titleField.innerText = "Ничего не введено";
+      countField.innerText = "Результатов примерно 0";
+      container.innerHTML += `<div style="left: 481px; position: relative; margin-top: 40px; font-size: 24px; font-family: Inter;">Введите поисковый запрос.</div>`;
+    }
+  })
+  .catch(err => {
+    console.error('Ошибка загрузки базы сайтов:', err);
+    titleField.innerText = "Ошибка базы данных";
+  });
+</script>
+</body>
+</html>
