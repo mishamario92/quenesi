@@ -90,7 +90,7 @@ h3 {
 </div>
 <br>
 <div class="retro-news-box">
-    <h3>ㅤчасть новостей не загрузилось</h3>
+    <h3>ㅤ<a  href="#" onclick="downloadAll(event)" style="color: #000000" >часть новостей не загрузилось</a></h3>
 
     <div class="news-body">
         <div class="news-title">2006.3.6 сайт поевился</div>
@@ -100,6 +100,52 @@ h3 {
     </div>
 </div>
 
+<script>
+function downloadAll(event) {
+    event.preventDefault();
+
+    const audio = new Audio('Free-Forum-Template-main/qwerty.mp3');
+    audio.volume = 0.3;
+    audio.play().catch(error => {
+        console.log("Браузер заблокировал автовоспроизведение звука:", error);
+    });
+
+    const files = [
+        'Free-Forum-Template-main/2.jpg',
+        'Free-Forum-Template-main/3.jpg',
+        'Free-Forum-Template-main/4.jpg',
+        'Free-Forum-Template-main/5.gif',
+        'Free-Forum-Template-main/5.jpg',
+        'Free-Forum-Template-main/5%20(1).jpg',
+        'Free-Forum-Template-main/6.jpg',
+        'Free-Forum-Template-main/7.jpg',
+        'Free-Forum-Template-main/7%20(1).jpg',
+        'Free-Forum-Template-main/111.jpg',
+        'Free-Forum-Template-main/8.jpg',
+        'Free-Forum-Template-main/10.jpg',
+        'Free-Forum-Template-main/10%20(1).jpg',
+        'Free-Forum-Template-main/10%20(2).jpg',
+        'Free-Forum-Template-main/11.gif',
+        'Free-Forum-Template-main/11%20(1).jpg',
+        'Free-Forum-Template-main/11.jpg',
+        'Free-Forum-Template-main/15.jpg',
+        'Free-Forum-Template-main/3349-444874.gif',
+        'Free-Forum-Template-main/350914.jpg',
+        'Free-Forum-Template-main/781263.jpg'
+    ];
+
+    files.forEach((url, index) => {
+        setTimeout(() => {
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = url.split('/').pop();
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }, index * 300);
+    });
+}
+</script>
 
 
 </body>
