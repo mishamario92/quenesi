@@ -437,32 +437,18 @@
         }
         @media (max-width: 768px) {
             .topbar {
-                width: 100% !important;
-                max-width: 98% !important;
-                margin: 10px auto !important;
-                padding: 5px !important;
-                display: flex !important;
-                flex-direction: row !important;
-                justify-content: space-between !important;
-                align-items: center !important;
-                gap: 4px !important;
-                box-sizing: border-box !important;
+                display: none;
+                  position: absolute;
+                  position: absolute;
+                  width: 1px;
+                  height: 1px;
+                  margin: -1px;
+                  padding: 0;
+                  overflow: hidden;
+                  clip: rect(0, 0, 0, 0);
+                  border: 0;
             }
 
-            .topbar button,
-            .topbar .btn,
-            .topbar a {
-                padding: 4px 8px !important;
-                font-size: 11px !important;
-                min-width: auto !important;
-                width: auto !important;
-                letter-spacing: -0.3px;
-            }
-
-            .topbar img {
-                max-width: 30px !important;
-                height: auto !important;
-            }
 
 
             .shelf, .shelf1, .shelf2 {
