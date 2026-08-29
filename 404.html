@@ -49,33 +49,70 @@ a:hover {
     <p><a href="index.html">перейти на главную</a></p>
     <img src="сайт в разроботке/qaz.png" alt="Описание картинки" height="300">
 
-    <script>
-fetch('https://allorigins.win' + encodeURIComponent('https://www.anekdot.ru/rss/random.html'))
-  .then(response => {
-    if (response.ok) return response.json();
-    throw new Error('Ошибка сети.');
-  })
-  .then(data => {
-    // Декодируем и очищаем HTML от лишних тегов, чтобы достать текст анекдота
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(data.contents, 'text/html');
 
-    // Находим блок с текстом анекдота на странице anekdot.ru
-    const jokeElement = doc.querySelector('.topicbox .text');
+<script>
+    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    const now = new Date();
+    const audio = document.getElementById('dscnhtk');
 
-    if (jokeElement) {
-      const jokeText = jokeElement.innerText.trim();
+    if (now.getDate() === 3 && now.getMonth() === 8) {
+        const threshold = 160;
 
-      // Вот здесь ваш console.log выводит результат в консоль!
-      console.log("%cАнекдот дня:", "color: #007BFF; font-weight: bold; font-size: 14px;");
-      console.log(jokeText);
-    } else {
-      console.log("Не удалось найти текст анекдота на странице.");
+        setInterval(async () => {
+            const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+            const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+
+            if (widthThreshold || heightThreshold) {
+                console.log("Я календарь переверну");
+                await sleep(1000);
+                console.log("И снова");
+                await sleep(1000);
+                console.log("Never gonna give you up");
+                await sleep(1000);
+                console.log("Say goodbye");
+                await sleep(1000);
+                console.log("*Звук выстрела*");
+
+                if (audio) {
+                    await audio.play().catch(err => {
+                        console.log("Браузер заблокировал звук, так как не было клика по странице");
+                    });
+                }
+            }
+        }, 1000);
     }
-  })
-  .catch(error => console.error('Ошибка загрузки анекдота:', error));
+    // 2. В JS пишется "else if", а не "elif"
+    else if (now.getDate() === 1 && now.getMonth() === 4) {
+        console.log("Анекдотов сегодня не будет");
+    }
+    else {
+        fetch('https://allorigins.win' + encodeURIComponent('https://www.anekdot.ru/rss/random.html'))
+          .then(response => {
+            if (response.ok) return response.json();
+            throw new Error('Ошибка сети.');
+          })
+          .then(data => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(data.contents, 'text/xml');
 
+            const items = doc.querySelectorAll('item');
+            if (items.length > 0) {
+              const randomItem = items[Math.floor(Math.random() * items.length)];
+              const description = randomItem.querySelector('description');
 
-    </script>
+              if (description) {
+                const jokeText = description.textContent.replace(/<br\s*\/?>/gi, '\n').trim();
+
+                console.log("%cАнекдот дня:", "color: #007BFF; font-weight: bold; font-size: 14px;");
+                console.log(jokeText);
+              }
+            } else {
+              console.log("Не удалось найти анекдоты в RSS-ленте.");
+            }
+          })
+          .catch(error => console.error('Ошибка загрузки анекдота:', error));
+    }
+</script>
+
 </body>
 </html>
