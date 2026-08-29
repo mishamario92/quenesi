@@ -50,7 +50,32 @@ a:hover {
     <img src="сайт в разроботке/qaz.png" alt="Описание картинки" height="300">
 
     <script>
-        console.log("404");
+fetch('https://allorigins.win' + encodeURIComponent('https://www.anekdot.ru/rss/random.html'))
+  .then(response => {
+    if (response.ok) return response.json();
+    throw new Error('Ошибка сети.');
+  })
+  .then(data => {
+    // Декодируем и очищаем HTML от лишних тегов, чтобы достать текст анекдота
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(data.contents, 'text/html');
+
+    // Находим блок с текстом анекдота на странице anekdot.ru
+    const jokeElement = doc.querySelector('.topicbox .text');
+
+    if (jokeElement) {
+      const jokeText = jokeElement.innerText.trim();
+
+      // Вот здесь ваш console.log выводит результат в консоль!
+      console.log("%cАнекдот дня:", "color: #007BFF; font-weight: bold; font-size: 14px;");
+      console.log(jokeText);
+    } else {
+      console.log("Не удалось найти текст анекдота на странице.");
+    }
+  })
+  .catch(error => console.error('Ошибка загрузки анекдота:', error));
+
+
     </script>
 </body>
 </html>
