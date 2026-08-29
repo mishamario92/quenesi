@@ -57,7 +57,6 @@ a:hover {
 
     if (now.getDate() === 3 && now.getMonth() === 8) {
         const threshold = 160;
-
         setInterval(async () => {
             const widthThreshold = window.outerWidth - window.innerWidth > threshold;
             const heightThreshold = window.outerHeight - window.innerHeight > threshold;
@@ -72,7 +71,6 @@ a:hover {
                 console.log("Say goodbye");
                 await sleep(1000);
                 console.log("*Звук выстрела*");
-
                 if (audio) {
                     await audio.play().catch(err => {
                         console.log("Браузер заблокировал звук, так как не было клика по странице");
@@ -80,39 +78,39 @@ a:hover {
                 }
             }
         }, 1000);
-    }
-    // 2. В JS пишется "else if", а не "elif"
-    else if (now.getDate() === 1 && now.getMonth() === 4) {
+
+    } else if (now.getDate() === 1 && now.getMonth() === 4) {
         console.log("Анекдотов сегодня не будет");
-    }
-    else {
-        fetch('https://allorigins.win' + encodeURIComponent('https://www.anekdot.ru/rss/random.html'))
-          .then(response => {
-            if (response.ok) return response.json();
-            throw new Error('Ошибка сети.');
-          })
-          .then(data => {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(data.contents, 'text/xml');
 
-            const items = doc.querySelectorAll('item');
-            if (items.length > 0) {
-              const randomItem = items[Math.floor(Math.random() * items.length)];
-              const description = randomItem.querySelector('description');
+    } else {
+        window.anekdot_count = 1;
 
-              if (description) {
-                const jokeText = description.textContent.replace(/<br\s*\/?>/gi, '\n').trim();
+        const originalWrite = document.write;
+        document.write = function(text) {
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = text;
 
-                console.log("%cАнекдот дня:", "color: #007BFF; font-weight: bold; font-size: 14px;");
-                console.log(jokeText);
-              }
-            } else {
-              console.log("Не удалось найти анекдоты в RSS-ленте.");
-            }
-          })
-          .catch(error => console.error('Ошибка загрузки анекдота:', error));
+            const jokeText = tempDiv.innerText || tempDiv.textContent;
+
+            console.log("%cАнекдот дня:", "color: #007BFF; font-weight: bold; font-size: 14px;");
+            console.log(jokeText.trim());
+
+            document.write = originalWrite;
+        };
+
+        const script = document.createElement('script');
+        script.src = 'https://www.anekdot.ru/rss/randomu.html';
+        script.charset = 'utf-8';
+
+        script.onerror = function() {
+            console.error('Не удалось загрузить официальный скрипт Анекдот.ру');
+            document.write = originalWrite;
+        };
+
+        document.body.appendChild(script);
     }
 </script>
+
 
 </body>
 </html>
