@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang=ru>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8">
+    <meta name=viewport content="width=device-width, initial-scale=1.0">
+    <meta charset=UTF-8>
     <title>quenesi/о проекте</title>
-    <link rel="icon" href="иконка.png" sizes="any">
-     <style>
+    <link rel=icon href=иконка.png sizes=any>
+    <style>
         @font-face {
             font-family: 'Rubik 80s Fade';
             src: url('fonts/Rubik80sFade-Regular.ttf') format('TrueType');
@@ -287,48 +287,24 @@ body {
 
     </style>
 </head>
-<body>
-
-    <img decoding="async" src="quenesi.png" id="quenesipng" class="quenesipng" width="70" >
-
-    <button onclick="window.location.href='index.html';" class="ybutton">
-        <img src="jkl.png" alt="Назад">
-    </button>
-
-<div class="glow-container">
-    <div class="purpleop-box">
-        <a href="?project=ЕКОСЕСТЕМА КРАСНЫХ ДОМОВ" id="btn-red" class="nav-link">Экосистема Красных Домов</a>
-        <a href="?project=геимбой" id="btn-gb" class="nav-link">Геймбой: Трёхглавие</a>
-    </div>
+<body><img decoding=async src=quenesi.png id=quenesipng class=quenesipng width=70>
+<button onclick="window.location.href='index.html';" class=ybutton><img src=jkl.png alt=Назад></button>
+<div class=glow-container>
+    <div class=purpleop-box><a href="?project=ЕКОСЕСТЕМА КРАСНЫХ ДОМОВ" id=btn-red class=nav-link>Экосистема Красных
+        Домов</a><a href="?project=геимбой" id=btn-gb class=nav-link>Геймбой: Трёхглавие</a></div>
 </div>
-
-
-    <div class="main-interface">
-        <div class="parent">
-            <div class="div1">
-                <div class="project-icon-box">
-                    <img id="projectIcon" src="" alt="Иконка">
-                </div>
-            </div>
-
-            <div class="div2">
-                <div class="project-title">
-                    Проект: <span id="projectName"></span>
-                </div>
-
-                <div class="description-block">
-                    <strong>Описание:</strong> <br>
-                    <span id="projectDesc"></span>
-                </div>
-
-                <div class="stage-block">
-                    Этап: <span id="projectStage"></span>
-                </div>
-            </div>
+<div class=main-interface>
+    <div class=parent>
+        <div class=div1>
+            <div class=project-icon-box><img id=projectIcon src alt=Иконка></div>
+        </div>
+        <div class=div2>
+            <div class=project-title> Проект: <span id=projectName></span></div>
+            <div class=description-block><strong>Описание:</strong> <br><span id=projectDesc></span></div>
+            <div class=stage-block> Этап: <span id=projectStage></span></div>
         </div>
     </div>
-
-
+</div>
 <script>
 if (window.innerWidth <= 768) {
     document.querySelectorAll('.quenesipng').forEach(widget => widget.width="70");
@@ -402,6 +378,5 @@ const projectsDatabase = {
 
   window.addEventListener('DOMContentLoaded', initDynamicInterface);
 </script>
-
 </body>
 </html>

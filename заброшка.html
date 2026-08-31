@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang=ru>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset=UTF-8>
+    <meta name=viewport content="width=device-width, initial-scale=1.0">
     <title>quenesi/тут нечего</title>
-    <link rel="icon" href="иконка.png" sizes="any">
-    <link rel="stylesheet" href="css/all.css"/>
-<style>
+    <link rel=icon href=иконка.png sizes=any>
+    <link rel=stylesheet href=css/all.css>
+    <style>
     body {
         margin: 0;
         padding: 0;
@@ -56,14 +56,12 @@
         background: rgba(0, 0, 255, 0.4);
     }
 
-</style>
+    </style>
 </head>
 <body>
-    <audio id="screamer-sound" src="novosti.mp3"></audio>
-
-
-    <script>
-        const audio = document.getElementById('screamer-sound');
+<audio id=screamer-sound src=novosti.mp3></audio>
+<script>document.addEventListener('DOMContentLoaded', () => {
+    const audio = document.getElementById('screamer-sound');
 
         const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -89,12 +87,7 @@
                 console.error("Произошла ошибка в логике скрипта:", e);
             }
         };
-
-    </script>
-
-    <div class="glow-box">
-        <img src="rty.jpg" alt="я кальмар">
-    </div>
-
+});</script>
+<div class=glow-box><img src=rty.jpg alt="я кальмар"></div>
 </body>
 </html>

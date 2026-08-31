@@ -1,120 +1,103 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang=ru>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset=UTF-8>
+    <meta name=viewport content="width=device-width, initial-scale=1.0">
     <title>quenesi/1.2</title>
-    <link rel="stylesheet" href="css/all.css"/>
-
-    <link id="theme-style" rel="stylesheet" href="style.css">
-    <link rel="icon" href="иконка.png" sizes="any">
-
+    <link rel=stylesheet href=css/all.css>
+    <link id=theme-style rel=stylesheet href=style.css>
+    <link rel=icon href=иконка.png sizes=any>
 </head>
 <body>
-
-    <div id="playerStatus" class="music-player-status" style="position: fixed; top: 80px; left: 50%; transform: translateX(-50%); padding: 5px 15px; font-size: 14px; z-index: 1100; display: none; background: #fff; color: #000; border: 2px solid #000;">
-        Сейчас играет: <span id="trackName">Ничего</span>
+<div id=playerStatus class=music-player-status
+     style="position: fixed; top: 80px; left: 50%; transform: translateX(-50%); padding: 5px 15px; font-size: 14px; z-index: 1100; display: none; background: #fff; color: #000; border: 2px solid #000;">
+    Сейчас играет: <span id=trackName>Ничего</span></div>
+<nav class=topbar><a href=#start>В начало</a><a href=#middle>В середину</a><a href=#end>В конец</a></nav>
+<img decoding=async src=quenesi.png id=myImage class=wp-image-981 width=115 sizes="(max-width: 231px) 100vw, 231px"
+     onclick="changeStyle('style2.css'), document.getElementById('myImage').src='2.png', document.getElementById('m').src='2.png'"
+     style="cursor: pointer; margin: 20px 0 20px 30px;">
+<section id=start class=section>
+    <div class=texture-rectangle>
+        <div class=image-wrapper onclick=playRandomMusic() style="cursor: pointer;"><img src=картинки/йцу.png
+                                                                                         class=img-base
+                                                                                         alt="Картинка 1"><img
+                src=картинки/pudge-dance.gif class=img-hover alt="Картинка 2"></div>
+        <div class=text-block><h1 class=text-large>я _mMm_ это моё портфолио</h1>
+            <p class=text-small> я знаю блондер фигму годот веб итак понятно и тд...</p></div>
     </div>
-
-    <nav class="topbar">
-        <a href="#start">В начало</a>
-        <a href="#middle">В середину</a>
-        <a href="#end">В конец</a>
-    </nav>
-
-    <img decoding="async" src="quenesi.png" id="myImage" class="wp-image-981" width="115" sizes="(max-width: 231px) 100vw, 231px"
-         onclick="changeStyle('style2.css'), document.getElementById('myImage').src='2.png', document.getElementById('m').src='2.png'" style="cursor: pointer; margin: 20px 0 20px 30px;">
-
-    <section id="start" class="section">
-        <div class="texture-rectangle">
-            <div class="image-wrapper" onclick="playRandomMusic()" style="cursor: pointer;">
-                <img src="картинки/йцу.png" class="img-base" alt="Картинка 1"/>
-                <img src="картинки/pudge-dance.gif" class="img-hover" alt="Картинка 2"/>
-            </div>
-
-            <div class="text-block">
-                <h1 class="text-large">я _mMm_ это моё портфолио</h1>
-                <p class="text-small"> я знаю блондер фигму годот веб итак понятно и тд...</p>
-            </div>
-        </div>
-    </section>
-    <p style="    font-size: 18px;
+</section>
+<p style="    font-size: 18px;
     font-weight: 600;
     color: #2c3e50;
     line-height: 1.6;">тут только то что смог откопать БУДУШИМ БУДЕТ БОЛЬШЕ </p>
-    <section id="middle" class="section">
-        <div class="bookcase">
-            <div class="shelf">
-                <button onclick="window.location.href='https://m-mmm.itch.io/nechego';" class="shelf-btn">
-                    <img src="Новая папка (4)/4.png" alt="" class="btn-icon"> nechego  </button>
-                <button onclick="window.location.href='https://mishamario92.github.io/kopirovat-_utyug/';" class="shelf-btn">
-                    <img src="11111111 (1).png" alt="" class="btn-icon"> утюг </button>
-                <button onclick="window.location.href='https://t.me/addstickers/hleb9248';" class="shelf-btn">
-                    <img src="хлеб11111111 копия.png" alt="" class="btn-icon"> хлебушек </button>
-                <button onclick="window.location.href='https://modrinth.com/user/Kto_Tbl';" class="shelf-btn">
-                    <img src="Новая папка (4)/3.png" alt="" class="btn-icon"> МОДЫ </button>
-                <button onclick="window.location.href='ШРИВТ.html';" class="shelf-btn">
-                    <img src="icons/20.ico" alt="" class="btn-icon"> ШРИВТ </button>
-            </div>
-
-            <div class="shelf1">
-                <button onclick="window.location.href='галерея.html';" class="shelf-btn">
-                    <img src="рол.png" alt="" class="btn-icon"> тут всякие арты </button>
-                <button onclick="window.location.href='заброшка.html';" class="shelf-btn">
-                    <img src="иконка.png" alt="" class="btn-icon"> тут нечего </button>
-                <button onclick="window.location.href='заброшка.html';" class="shelf-btn">
-                    <img src="иконка.png" alt="" class="btn-icon"> тут нечего </button>
-                <button onclick="window.location.href='заброшка.html';" class="shelf-btn">
-                    <img src="иконка.png" alt="" class="btn-icon"> тут нечего </button>
-                <button onclick="window.location.href='заброшка.html';" class="shelf-btn">
-                    <img src="иконка.png" alt="" class="btn-icon"> тут нечего </button>
-            </div>
-
-            <div class="shelf2">
-            <button onclick="window.location.href='о_проекте.html?project=ЕКОСЕСТЕМА КРАСНЫХ ДОМОВ';" class="shelf-btn">
-                <img src="Новая папка (4)/2.png" alt="" class="btn-icon">
-                Экосистема Красных Домов
+<section id=middle class=section>
+    <div class=bookcase>
+        <div class=shelf>
+            <button onclick="window.location.href='https://m-mmm.itch.io/nechego';" class=shelf-btn><img
+                    src="Новая папка (4)/4.png" alt class=btn-icon> nechego
             </button>
-
-            <button onclick="window.location.href='о_проекте.html?project=геимбой';" class="shelf-btn">
-                <img src="Новая папка (4)/2.png" alt="" class="btn-icon">
-                Геймбой: Трёхглавие
+            <button onclick="window.location.href='https://mishamario92.github.io/kopirovat-_utyug/';" class=shelf-btn>
+                <img src="11111111 (1).png" alt class=btn-icon> утюг
             </button>
-
-                <button onclick="window.location.href='заброшка.html ?project=геимбой';" class="shelf-btn">
-                    <img src="Новая папка (4)/2.png" alt="" class="btn-icon"> тут нечего </button>
-                <button onclick="window.location.href='заброшка.html';" class="shelf-btn">
-                    <img src="Новая папка (4)/2.png" alt="" class="btn-icon"> тут нечего </button>
-                <button onclick="window.location.href='заброшка.html';" class="shelf-btn">
-                    <img src="Новая папка (4)/2.png" alt="" class="btn-icon"> тут нечего </button>
-            </div>
-            <div class="shelf3">
-                <button onclick="window.location.href='111/index.html';" class="shelf-1tn">
-                         retro </button>
-            </div>
+            <button onclick="window.location.href='https://t.me/addstickers/hleb9248';" class=shelf-btn><img
+                    src="хлеб11111111 копия.png" alt class=btn-icon> хлебушек
+            </button>
+            <button onclick="window.location.href='https://modrinth.com/user/Kto_Tbl';" class=shelf-btn><img
+                    src="Новая папка (4)/3.png" alt class=btn-icon> МОДЫ
+            </button>
+            <button onclick="window.location.href='ШРИВТ.html';" class=shelf-btn><img src=icons/20.ico alt
+                                                                                      class=btn-icon> ШРИВТ
+            </button>
         </div>
-    </section>
-    <section id="end" class="section">
-        <img decoding="async" src="quenesi.png" id="m" class="wp-image-981" width="260" sizes="(max-width: 400px) 1000vw, 401px"
-             onclick="changeStyle('style3.css'), document.getElementById('m').src='2.png', document.getElementById('myImage').src='2.png' " style="cursor: pointer; display: block; margin-bottom: 20px;">
-
-        <ul class="list-container">
-            <li class="list-item">
-                <a href="https://github.com/mishamario92">
-                    <i class="fab fa-github"></i> гитхаб
-                </a>
-            </li>
-            <li class="list-item">
-                <a href="https://t.me/quenesi" style="color: #17afb5;">
-                    <i class="fab fa-telegram-plane"></i> телега
-                </a>
-            </li>
-        </ul>
-
-    </section>
-
-
-
+        <div class=shelf1>
+            <button onclick="window.location.href='галерея.html';" class=shelf-btn><img src=рол.png alt class=btn-icon>
+                тут всякие арты
+            </button>
+            <button onclick="window.location.href='заброшка.html';" class=shelf-btn><img src=иконка.png alt
+                                                                                         class=btn-icon> тут нечего
+            </button>
+            <button onclick="window.location.href='заброшка.html';" class=shelf-btn><img src=иконка.png alt
+                                                                                         class=btn-icon> тут нечего
+            </button>
+            <button onclick="window.location.href='заброшка.html';" class=shelf-btn><img src=иконка.png alt
+                                                                                         class=btn-icon> тут нечего
+            </button>
+            <button onclick="window.location.href='заброшка.html';" class=shelf-btn><img src=иконка.png alt
+                                                                                         class=btn-icon> тут нечего
+            </button>
+        </div>
+        <div class=shelf2>
+            <button onclick="window.location.href='о_проекте.html?project=ЕКОСЕСТЕМА КРАСНЫХ ДОМОВ';" class=shelf-btn>
+                <img src="Новая папка (4)/2.png" alt class=btn-icon> Экосистема Красных Домов
+            </button>
+            <button onclick="window.location.href='о_проекте.html?project=геимбой';" class=shelf-btn><img
+                    src="Новая папка (4)/2.png" alt class=btn-icon> Геймбой: Трёхглавие
+            </button>
+            <button onclick="window.location.href='заброшка.html ?project=геимбой';" class=shelf-btn><img
+                    src="Новая папка (4)/2.png" alt class=btn-icon> тут нечего
+            </button>
+            <button onclick="window.location.href='заброшка.html';" class=shelf-btn><img src="Новая папка (4)/2.png" alt
+                                                                                         class=btn-icon> тут нечего
+            </button>
+            <button onclick="window.location.href='заброшка.html';" class=shelf-btn><img src="Новая папка (4)/2.png" alt
+                                                                                         class=btn-icon> тут нечего
+            </button>
+        </div>
+        <div class=shelf3>
+            <button onclick="window.location.href='111/index.html';" class=shelf-1tn> retro</button>
+        </div>
+    </div>
+</section>
+<section id=end class=section><img decoding=async src=quenesi.png id=m class=wp-image-981 width=260
+                                   sizes="(max-width: 400px) 1000vw, 401px"
+                                   onclick="changeStyle('style3.css'), document.getElementById('m').src='2.png', document.getElementById('myImage').src='2.png' "
+                                   style="cursor: pointer; display: block; margin-bottom: 20px;">
+    <ul class=list-container>
+        <li class=list-item><a href=https://github.com/mishamario92><i class="fab fa-github"></i> гитхаб </a></li>
+        <li class=list-item><a href=https://t.me/quenesi style="color: #17afb5;"><i class="fab fa-telegram-plane"></i>
+            телега </a></li>
+    </ul>
+</section>
 <script>
     function changeStyle(sheetName) {
         const themeStyle = document.getElementById('theme-style');
@@ -286,41 +269,32 @@
     };
 
     window.addEventListener('DOMContentLoaded', generateRetroIcons);
-    </script>
-    <div class="feedback-box"
-         style="position: relative; z-index: 20; background: #c0c0c0; border: 2px solid #fff; padding: 15px; width: 300px; box-shadow: 2px 2px 5px #000;">
-        <div style="background: #000080; color: #fff; padding: 3px; font-weight: bold; margin-bottom: 10px;">
-            Книга жалоб и предложений
-        </div>
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-        <form id="form">
-            <label style="display:block; margin-bottom: 5px;">Ваше имя/ник:</label>
-            <input type="text" name="name" required style="width: 100%; margin-bottom: 10px;"/>
-
-            <label style="display:block; margin-bottom: 5px;">Суть жалобы или идеи:</label>
-            <textarea name="message" required
-                      style="width: 100%; height: 80px; margin-bottom: 10px; resize: none;"></textarea>
-
-            <div class="g-recaptcha" data-sitekey="6Lce-ggtAAAAAMcr0G0lJ0LJ7Xoe6qYzG2SCOu90" style="margin-bottom: 15px;" ></div>
-
-            <input type="submit" id="button" value="Озвучить" class="custom-btn btn-1"
-                   style="margin-top: 20px; width: 100%; cursor: pointer; " disabled/>
-
-        </form>
-        <div id="form-status" style="margin-top: 10px; font-weight: bold; display: none;"></div>
+</script>
+<div class=feedback-box
+     style="position: relative; z-index: 20; background: #c0c0c0; border: 2px solid #fff; padding: 15px; width: 300px; box-shadow: 2px 2px 5px #000;">
+    <div style="background: #000080; color: #fff; padding: 3px; font-weight: bold; margin-bottom: 10px;"> Книга жалоб и
+        предложений
     </div>
-
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-    <script type="text/javascript">
+    <script src=https://www.google.com/recaptcha/api.js async defer></script>
+    <form id=form><label style="display:block; margin-bottom: 5px;">Ваше имя/ник:</label><input type=text name=name
+                                                                                                required
+                                                                                                style="width: 100%; margin-bottom: 10px;"><label
+            style="display:block; margin-bottom: 5px;">Суть жалобы или идеи:</label><textarea name=message required
+                                                                                              style="width: 100%; height: 80px; margin-bottom: 10px; resize: none;"></textarea>
+        <div class=g-recaptcha data-sitekey=6Lce-ggtAAAAAMcr0G0lJ0LJ7Xoe6qYzG2SCOu90 style="margin-bottom: 15px;"></div>
+        <input type=submit id=button value=Озвучить class="custom-btn btn-1"
+               style="margin-top: 20px; width: 100%; cursor: pointer; " disabled></form>
+    <div id=form-status style="margin-top: 10px; font-weight: bold; display: none;"></div>
+</div>
+<script type=text/javascript src=https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js></script>
+<script type=text/javascript>
         emailjs.init('z_xwGDmKpyyFor9JT');
         const submitBtn = document.getElementById('button');
         if (submitBtn) {
             submitBtn.removeAttribute('disabled');
         }
-    </script>
-
-<script type="text/javascript">
+</script>
+<script type=text/javascript>
 const btn = document.getElementById('button');
 const formStatus = document.getElementById('form-status');
 
@@ -396,10 +370,6 @@ document.getElementById('form')
         }
     });
 
-    </script>
-
-
-
-
+</script>
 </body>
 </html>

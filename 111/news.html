@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang=ru>
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
+    <meta charset=UTF-8>
+    <link rel=stylesheet href=style.css>
     <title>quenesi.tk</title>
-    <link rel="icon" href="иконка.png" sizes="any">
+    <link rel=icon href=иконка.png sizes=any>
     <style>
         * {
             margin: 0;
@@ -307,60 +307,34 @@ iframe {
         background-color: #ffcc00;
         font-weight: bold;
     }
-</style>
-
-
-            <div class="forum-widget">
-    <div class="widget-header">Последнее на форуме</div>
-
-    <div class="widget-content">
-
-        <div class="forum-item">
-            <div class="item-main">
-                <a href="forum-флуд.html" class="topic-title">флуд</a>
-                <span class="topic-date">20 тредов</span>
+    </style>
+    <div class=forum-widget>
+        <div class=widget-header>Последнее на форуме</div>
+        <div class=widget-content>
+            <div class=forum-item>
+                <div class=item-main><a href=forum-флуд.html class=topic-title>флуд</a><span
+                        class=topic-date>20 тредов</span></div>
+            </div>
+            <div class=forum-item>
+                <div class=item-main><a href=forum-oценка-проектов.html class=topic-title>оценка проектов</a><span
+                        class=topic-date>312 тредов</span></div>
+            </div>
+            <div class=forum-item>
+                <div class=item-main><a href=forum-разроботка-проектов.html class=topic-title>разроботка
+                    проектов</a><span class=topic-date>100 тредов</span></div>
             </div>
         </div>
-
-        <div class="forum-item">
-            <div class="item-main">
-                <a href="forum-oценка-проектов.html" class="topic-title">оценка проектов</a>
-                <span class="topic-date">312 тредов</span>
-            </div>
-
+        <a href=forum11.html class=widget-footer-btn>весь форум</a></div>
+    <div class=forum-widget>
+        <div class=widget-header>войти на ак</div>
+        <div class=widget-content>
+            <iframe src=пп.html width=290 height=200></iframe>
         </div>
-
-
-        <div class="forum-item">
-            <div class="item-main">
-                <a href="forum-разроботка-проектов.html" class="topic-title">разроботка проектов</a>
-                <span class="topic-date">100 тредов</span>
-            </div>
-        </div>
-
+        <a href=account.html class=widget-footer-btn>твой ак</a></div>
+    <div class=calendar-wrapper>
+        <table class=calendar-table id=dynamic-calendar></table>
     </div>
-
-    <a href="forum11.html" class="widget-footer-btn">весь форум</a>
-</div>
-
-        <div class="forum-widget">
-    <div class="widget-header">войти на ак</div>
-
-    <div class="widget-content">
-
-        <iframe src="пп.html" width="290" height="200"></iframe>
-
-    </div>
-
-    <a href="account.html" class="widget-footer-btn">твой ак</a>
-</div>
-    <div class="calendar-wrapper">
-    <table class="calendar-table" id="dynamic-calendar">
-    </table>
-</div>
-
-<script>
-
+    <script>document.addEventListener('DOMContentLoaded', () => {
 if (window.innerWidth <= 1024) {
     document.querySelectorAll('.forum-widget').forEach(widget => widget.remove());
 }
@@ -411,81 +385,50 @@ function generateCalendar() {
 }
 
 window.onload = generateCalendar;
-</script>
+    });</script>
 </head>
 <body>
-
-    <div class="wrapper">
-
-        <div class="header">
-           <a href="../index.html" ><img src="textanim (1).gif" alt="Описание анимации" ></a>
-            <p class="slogan">наша кладбише кода</p>
-        </div>
-
-        <div class="nav">
-            <ul>
-                <li><a href="index.html" >Главная</a></li>
-                <li><a href="news.html" class="active">Новости</a></li>
-                <li><a href="forum11.html">Форум</a></li>
-                <li><a href="account.html">Свой ак</a></li>
-            </ul>
-            <div class="clearfix"></div>
-        </div>
-
-        <div class="main-content">
-
-            <div class="left-col">
-                <br>
-                <h2>⠀Новости!</h2>
-                <iframe src="ффф.html" class="news-frame"></iframe>
-                                <div class="paint-window" style="border: 2px solid #dfdfdf; box-shadow: 2px 2px 5px #000; width: 100%; max-width: 1000px;">
-
-                    <div style="background: linear-gradient(90deg, #000080, #1084d0); color: white; padding: 4px 8px; font-family: sans-serif; font-weight: bold; display: flex; justify-content: space-between;">
-                        <span>Untitled - Paint</span>
-                        <span >🗙</span>
-                    </div>
-                         <iframe src="https://jspaint.app" style="width: 100%; height: 600px; border: none; cursor: url('312.png');"></iframe>
-
-
-                </div>
-
-
-            </div>
-      <div class="sidebar">
-                <div class="counter">
-                        <object data="banner.as" type="application/x-shockwave-flash" width="230" height="100">
-                            <p>Реклама не поддерживается вашим браузером.</p>
-                        </object>
-                </div>
-      </div>
-
-            <div class="clearfix"></div>
-
-        </div>
-
-
-        <div class="footer">
-            <a href="https://skype.com">
-                <img src="skype (2).png" alt="При поддержке Skype" width="200" height="100">
-
-            </a>
-            <p>&copy; 2008-2012 OOO"quenesi".</p>
-
-            <p><strong>наша почта:</strong><a href="mailto:quenesi@nm.ru" target="_blank">quenesi@nm.ru</a></p>
-
-        </div>
-
-
+<div class=wrapper>
+    <div class=header><a href=../index.html><img src="textanim (1).gif" alt="Описание анимации"></a>
+        <p class=slogan>наша кладбише кода</p></div>
+    <div class=nav>
+        <ul>
+            <li><a href=index.html>Главная</a></li>
+            <li><a href=news.html class=active>Новости</a></li>
+            <li><a href=forum11.html>Форум</a></li>
+            <li><a href=account.html>Свой ак</a></li>
+        </ul>
+        <div class=clearfix></div>
     </div>
-<div class="banner-wrapper">
-    <object class="qaz" data="banner.as" type="application/x-shockwave-flash" width="1000" height="100">
-        <p>Реклама не поддерживается вашим браузером.</p>
-    </object>
+    <div class=main-content>
+        <div class=left-col><br>
+            <h2>⠀Новости!</h2>
+            <iframe src=ффф.html class=news-frame></iframe>
+            <div class=paint-window
+                 style="border: 2px solid #dfdfdf; box-shadow: 2px 2px 5px #000; width: 100%; max-width: 1000px;">
+                <div style="background: linear-gradient(90deg, #000080, #1084d0); color: white; padding: 4px 8px; font-family: sans-serif; font-weight: bold; display: flex; justify-content: space-between;">
+                    <span>Untitled - Paint</span><span>🗙</span></div>
+                <iframe src=https://jspaint.app
+                        style="width: 100%; height: 600px; border: none; cursor: url('312.png');"></iframe>
+            </div>
+        </div>
+        <div class=sidebar>
+            <div class=counter>
+                <object data=banner.as type=application/x-shockwave-flash width=230 height=100><p>Реклама не
+                    поддерживается вашим браузером.</p></object>
+            </div>
+        </div>
+        <div class=clearfix></div>
+    </div>
+    <div class=footer><a href=https://skype.com><img src="skype (2).png" alt="При поддержке Skype" width=200 height=100></a>
+        <p>&copy; 2008-2012 OOO"quenesi".</p>
+        <p><strong>наша почта:</strong><a href=mailto:quenesi@nm.ru target=_blank>quenesi@nm.ru</a></p></div>
 </div>
-<!--LiveInternet counter--><a href="https://www.liveinternet.ru/click"
-target="_blank"><img src="https://counter.yadro.ru/hit?t58.13"
-alt="" title="LiveInternet"
-style="border:0" width="108" height="41"/></a><!--/LiveInternet-->
-
+<div class=banner-wrapper>
+    <object class=qaz data=banner.as type=application/x-shockwave-flash width=1000 height=100><p>Реклама не
+        поддерживается вашим браузером.</p></object>
+</div>
+<a href=https://www.liveinternet.ru/click target=_blank><img src=https://counter.yadro.ru/hit?t58.13 alt
+                                                             title=LiveInternet style=border:0 width=108 height=41></a>
 </body>
 </html>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang=en>
 <head>
-    <meta charset="UTF-8">
+    <meta charset=UTF-8>
     <title>Title</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="иконка.png" sizes="any">
+    <link rel=stylesheet href=style.css>
+    <link rel=icon href=иконка.png sizes=any>
     <style>
 
 .retro-news-box {
@@ -55,52 +55,39 @@ h3 {
     </style>
 </head>
 <body>
-<div class="retro-news-box">
-    <div class="news-header">НОВОСТИ САЙТА</div>
-    <div class="news-body">
-        <div class="news-title">2012.1.1 сайт обновлён</div>
-        <div class="news-description">
-            сайт обновлён
-        </div>
-    </div>
-</div>
-
-<br>
-
-<div class="retro-news-box">
-    <h3>ㅤчасть новостей не загрузилось</h3>
-    <div class="news-body">
-        <div class="news-title">2011.4.7 НАГРАДЫ ПО After Effects</div>
-        <div class="news-description">
-            <a href="https://www.mediafire.com/file/ws6ftr8qxc4m4n0/%25D0%25BA%25D0%25BE%25D0%25BD%25D0%25BA%25D1%2583%25D1%2580%25D1%2581.zip/file" target="_blank" class="download-btn" style="text-decoration: none; display: inline-block;">
- Короче, нам лень писать про фейковый конкурс, где выигроваю только я Да и так этот Матирял из 2026.            </a>
-        </div>
-    </div>
-</div>
-
-<br>
-
-<div class="retro-news-box">
-    <div class="news-body">
-        <div class="news-title">2007.7.7 сайт обновлён</div>
-        <div class="news-description">
-            сайт обновлён
-        </div>
+<div class=retro-news-box>
+    <div class=news-header>НОВОСТИ САЙТА</div>
+    <div class=news-body>
+        <div class=news-title>2012.1.1 сайт обновлён</div>
+        <div class=news-description> сайт обновлён</div>
     </div>
 </div>
 <br>
-<div class="retro-news-box">
-    <h3>ㅤ<a  href="#" onclick="downloadAll(event)" style="color: #343e66" >часть новостей не загрузилось</a></h3>
-
-    <div class="news-body">
-        <div class="news-title">2006.3.6 сайт поевился</div>
-        <div class="news-description">
-            сайт поевился
-        </div>
+<div class=retro-news-box><h3>ㅤчасть новостей не загрузилось</h3>
+    <div class=news-body>
+        <div class=news-title>2011.4.7 НАГРАДЫ ПО After Effects</div>
+        <div class=news-description><a
+                href=https://www.mediafire.com/file/ws6ftr8qxc4m4n0/%25D0%25BA%25D0%25BE%25D0%25BD%25D0%25BA%25D1%2583%25D1%2580%25D1%2581.zip/file
+                target=_blank class=download-btn style="text-decoration: none; display: inline-block;"> Короче, нам лень
+            писать про фейковый конкурс, где выигроваю только я Да и так этот Матирял из 2026. </a></div>
     </div>
 </div>
-
-<script>
+<br>
+<div class=retro-news-box>
+    <div class=news-body>
+        <div class=news-title>2007.7.7 сайт обновлён</div>
+        <div class=news-description> сайт обновлён</div>
+    </div>
+</div>
+<br>
+<div class=retro-news-box><h3>ㅤ<a href=# onclick=downloadAll(event) style="color: #343e66">часть новостей не
+    загрузилось</a></h3>
+    <div class=news-body>
+        <div class=news-title>2006.3.6 сайт поевился</div>
+        <div class=news-description> сайт поевился</div>
+    </div>
+</div>
+<script>document.addEventListener('DOMContentLoaded', () => {
 function downloadAll(event) {
     event.preventDefault();
 
@@ -145,8 +132,6 @@ function downloadAll(event) {
         }, index * 300);
     });
 }
-</script>
-
-
+});</script>
 </body>
 </html>
