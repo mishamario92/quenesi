@@ -363,8 +363,3 @@ i::before {
     height: 180px;
 }
 
-@media (max-width: 768px) {
-    .forum-widget {
-        display: none;
-    }
-}

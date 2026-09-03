@@ -193,7 +193,7 @@ body {
     text-decoration: underline;
     transition: color 0.2s ease;
 }
-.wp-image-981{
+.quenesipng{
      z-index: 3;
      margin: 20px 0 20px 30px;
      position: absolute;
@@ -278,7 +278,7 @@ body {
     .stage-block {
         align-self: center;
     }
-    .wp-image-981{
+    .quenesipng{
         margin: 110px 0 20px 30px;
         z-index: 10;
     }
@@ -289,7 +289,7 @@ body {
 </head>
 <body>
 
-    <img decoding="async" src="quenesi.png" id="myImage" class="wp-image-981" width="70" >
+    <img decoding="async" src="quenesi.png" id="quenesipng" class="quenesipng" width="70" >
 
     <button onclick="window.location.href='index.html';" class="ybutton">
         <img src="jkl.png" alt="Назад">
@@ -330,6 +330,13 @@ body {
 
 
 <script>
+if (window.innerWidth <= 768) {
+    document.querySelectorAll('.quenesipng').forEach(widget => widget.width="70");
+} else {
+    document.querySelectorAll('.quenesipng').forEach(widget => widget.width="120");
+}
+
+
 const projectsDatabase = {
   "ЕКОСЕСТЕМА КРАСНЫХ ДОМОВ": {
     title: "ЕКОСЕСТЕМА КРАСНЫХ ДОМОВ",
@@ -360,7 +367,7 @@ const projectsDatabase = {
 };
 
     const defaultProject = {
-      title: "ты из матрици",
+      title: "ты из матрицы",
       desc: "чё ты делаеш тут",
       stage: "Техподдержка(нету)",
       icon: "2.png",

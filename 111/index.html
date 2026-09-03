@@ -65,7 +65,7 @@
 .topic-title:hover {
     text-decoration: underline;
     color: #a3ff73;
-}}
+}
 
 .topic-date {
     position: absolute;
@@ -217,6 +217,29 @@
             border-radius: 3px;
             margin-top: 15px;
         }
+    .calendar-wrapper {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 1000;
+    }
+
+    .calendar-table {
+        border-collapse: collapse;
+        font-family: sans-serif;
+        background-color: white;
+    }
+
+    .calendar-table th, .calendar-table td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .highlighted {
+        background-color: #ffcc00;
+        font-weight: bold;
+    }
 
         .footer {
             display: flex;
@@ -379,49 +402,68 @@
 target="_blank"><img src="https://counter.yadro.ru/hit?t58.13"
 alt="" title="LiveInternet"
 style="border:0" width="108" height="41"/></a><!--/LiveInternet-->
-<style>
-    .calendar-wrapper {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        z-index: 1000;
-    }
 
-    .calendar-table {
-        border-collapse: collapse;
-        font-family: sans-serif;
-        background-color: white;
-    }
 
-    .calendar-table th, .calendar-table td {
-        border: 1px solid #ccc;
-        padding: 10px;
-        text-align: center;
-    }
 
-    .highlighted {
-        background-color: #ffcc00;
-        font-weight: bold;
-    }
-</style>
 
 <div class="calendar-wrapper">
-    <table class="calendar-table">
-        <caption>Декабрь 2013</caption>
+    <table class="calendar-table" id="dynamic-calendar">
+    </table>
+</div>
+
+<script>
+
+if (window.innerWidth <= 1024) {
+    document.querySelectorAll('.forum-widget').forEach(widget => widget.remove());
+}
+
+
+function generateCalendar() {
+    const calendar = document.getElementById('dynamic-calendar');
+    const today = new Date();
+    const month = today.getMonth();
+
+    let caption = 'Декабрь 2013';
+    let daysHtml = `
+        <tr><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+        <tr><td>7</td><td>8</td><td>9</td><td class="highlighted">10</td><td>11</td><td>12</td><td>13</td></tr>
+        <tr><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td></tr>
+        <tr><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td></tr>
+        <tr><td>28</td><td>29</td><td>30</td><td>31</td><td></td><td></td><td></td></tr>
+    `;
+
+    if (month === 3 && today.getDate() === 1) {
+        caption = 'Апрель 2013';
+        daysHtml = `
+            <tr><td class="highlighted">1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+            <tr><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
+            <tr><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr>
+            <tr><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr>
+            <tr><td>29</td><td>30</td><td></td><td></td><td></td><td></td><td></td></tr>
+        `;
+    }
+    else if (month === 5 && today.getDate() === 6) {
+        caption = 'Июнь 2013';
+        daysHtml = `
+            <tr><td></td><td></td><td></td><td></td><td></td><td>1</td><td>2</td></tr>
+            <tr><td>3</td><td>4</td><td>5</td><td class="highlighted">6</td><td>7</td><td>8</td><td>9</td></tr>
+            <tr><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td></tr>
+            <tr><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td></tr>
+            <tr><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td></tr>
+        `;
+    }
+
+    calendar.innerHTML = `
+        <caption>${caption}</caption>
         <tr>
             <th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th><th>Сб</th><th>Вс</th>
         </tr>
-        <tr>
-            <td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td>
-        </tr>
-        <tr>
-            <td>7</td><td>8</td><td>9</td><td class="highlighted">10</td><td>11</td><td>12</td><td>13</td>
-        </tr>
-        <tr>
-            <td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td>
-        </tr>
-    </table>
-</div>
+        ${daysHtml}
+    `;
+}
+
+window.onload = generateCalendar;
+</script>
 </body>
 
 </html>

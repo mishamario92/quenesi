@@ -56,28 +56,12 @@ a:hover {
     const audio = document.getElementById('dscnhtk');
 
     if (now.getDate() === 3 && now.getMonth() === 8) {
-        const threshold = 160;
-        setInterval(async () => {
-            const widthThreshold = window.outerWidth - window.innerWidth > threshold;
-            const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+        console.log("Я календарь переверну");
+        console.log("И снова");
+        console.log("Never gonna give you up");
+        console.log("Say goodbye");
+        console.log("*Звук выстрела*");
 
-            if (widthThreshold || heightThreshold) {
-                console.log("Я календарь переверну");
-                await sleep(1000);
-                console.log("И снова");
-                await sleep(1000);
-                console.log("Never gonna give you up");
-                await sleep(1000);
-                console.log("Say goodbye");
-                await sleep(1000);
-                console.log("*Звук выстрела*");
-                if (audio) {
-                    await audio.play().catch(err => {
-                        console.log("Браузер заблокировал звук, так как не было клика по странице");
-                    });
-                }
-            }
-        }, 1000);
 
     } else if (now.getDate() === 1 && now.getMonth() === 4) {
         console.log("Анекдотов сегодня не будет");
